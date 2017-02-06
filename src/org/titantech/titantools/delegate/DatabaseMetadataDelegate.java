@@ -1,17 +1,16 @@
 package org.titantech.titantools.delegate;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.titantech.titantools.GESystemException;
 import org.titantech.titantools.TTAppException;
 import org.titantech.titantools.dao.DAOFactory;
 import org.titantech.titantools.dao.DAOSysException;
 import org.titantech.titantools.dao.VOGeneratorDAO;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class DatabaseMetadataDelegate {
     private static Class CLAZZ = DatabaseMetadataDelegate.class;
@@ -22,10 +21,13 @@ public class DatabaseMetadataDelegate {
     private static String user = null;
     private static String password = null;
     private static Integer port = 0;
+    private String databaseSchema;
 
-    public Map getDatabaseTablesMap(String serverName, String databaseName, String user, String password, Integer port) throws TTAppException {
+    public Map getDatabaseTablesMap(String serverName, String databaseName, String user,
+                                    String password, Integer port, String databaseSchema)
+            throws TTAppException {
 
-        setDbInfo(serverName, databaseName, user, password, port);
+        setDbInfo(serverName, databaseName, user, password, port, databaseSchema);
 
         DAOFactory daoFactory = getDAOFactory(serverName, databaseName, user, password, port);
         try {
@@ -33,11 +35,11 @@ public class DatabaseMetadataDelegate {
 
             Map dbTableMetadataByTableName = new HashMap();
 
-            List dbTableNames = dao.getDatabaseTables();
+            List dbTableNames = dao.getDatabaseTables(databaseSchema);
             Iterator iter = dbTableNames.iterator();
             while (iter.hasNext()) {
                 String tableName = (String) iter.next();
-                List spgInputBeanList = dao.getListOfSPGInputBeans(tableName);
+                List spgInputBeanList = dao.getListOfSPGInputBeans(tableName, databaseSchema);
                 dbTableMetadataByTableName.put(tableName, spgInputBeanList);
             }
 
@@ -53,14 +55,14 @@ public class DatabaseMetadataDelegate {
         }
     }
 
-
     private void setDbInfo(String serverName, String databaseName,
-                           String user, String password, Integer port) {
+                           String user, String password, Integer port, String databaseSchema) {
         this.serverName = serverName;
         this.databaseName = databaseName;
         this.user = user;
         this.password = password;
         this.port = port;
+        this.databaseSchema = databaseSchema;
     }
 
 
@@ -68,7 +70,8 @@ public class DatabaseMetadataDelegate {
         return DAOFactory.getDAOFactory(DAOFactory.POSTGRES);
     }
 
-    protected DAOFactory getDAOFactory(String serverName, String databaseName, String user, String password, Integer port) {
+    protected DAOFactory getDAOFactory(String serverName, String databaseName,
+                                       String user, String password, Integer port) {
         return DAOFactory.getDAOFactory(DAOFactory.POSTGRES, serverName, databaseName, user, password, port);
     }
 
@@ -84,13 +87,13 @@ public class DatabaseMetadataDelegate {
     }
 
 
-    public List getInputBeanList(String tableName) {
+    public List getInputBeanList(String tableName, String databaseSchema) {
 
         DAOFactory daoFactory = getDAOFactory(serverName, databaseName, user, password, port);
 
         try {
             VOGeneratorDAO dao = daoFactory.getVOGeneratorDAO();
-            List inputBeanList = dao.getListOfSPGInputBeans(tableName);
+            List inputBeanList = dao.getListOfSPGInputBeans(tableName, databaseSchema);
 
             return inputBeanList;
 

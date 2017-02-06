@@ -117,7 +117,7 @@ public class DatabaseAction extends Action {
         try {
             Map dbMetadata = delegate.getDatabaseTablesMap(databaseForm.getServerName(),
                     databaseForm.getDatabaseName(), databaseForm.getDatabaseUser(),
-                    databaseForm.getDatabasePassword(), databaseForm.getDatabasePort());
+                    databaseForm.getDatabasePassword(), databaseForm.getDatabasePort(), databaseForm.getDatabaseSchema());
 
             databaseForm.setDbTableMap(dbMetadata);
             databaseForm.mapDatabaseMetadata(dbMetadata);

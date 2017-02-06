@@ -67,10 +67,10 @@ public class SearchAndEditPagesGenerator extends GeneratorBase {
         }
     }
 
-    public TableBean getTableBean(String tableName) {
+    public TableBean getTableBean(String tableName, String databaseSchema) {
         DatabaseMetadataDelegate delegate = new DatabaseMetadataDelegate();
         TableBean table = new TableBean();
-        table.setSpgInputBeanList(delegate.getInputBeanList(tableName));
+        table.setSpgInputBeanList(delegate.getInputBeanList(tableName, databaseSchema));
 
         return table;
     }

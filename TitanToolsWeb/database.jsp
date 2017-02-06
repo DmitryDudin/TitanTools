@@ -1,6 +1,3 @@
-<%@page import="org.titantech.titantools.dao.bean.SearchPageGeneratorInputBean" %>
-<%@page import="org.titantech.titantools.dao.bean.TableBean" %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -34,22 +31,24 @@
     </style>
 
     <script type="text/javascript">
-	function doPageSubmit(strutsAction) {
-		document.forms[0].actionName.value = strutsAction;
-		document.forms[0].submit();
-	}
-	
-	function forwardToGenerator() {
-		window.location.href = "generator.do?selectedTableName=" + document.forms[0].selectedTableName.value +
-				"&actionName=fillForm" + "&baseName=" + document.forms[0].selectedClassName.value;
-	}
-	
-// 	function buttonPressed (){
-// 		document.getElementById("buttonP").value = "true";
-// 	}
-	
+        function doPageSubmit(strutsAction) {
+            document.forms[0].actionName.value = strutsAction;
+            document.forms[0].submit();
+        }
+
+        function forwardToGenerator() {
+//		window.location.href = "generator.do?selectedTableName=" + document.forms[0].selectedTableName.value +
+//				"&actionName=fillForm" + "&baseName=" + document.forms[0].selectedClassName.value;
+            window.location.href = "generator.do?selectedTableName=" + document.forms[0].selectedTableName.value +
+                    "&actionName=fillForm" + "&baseName=" + document.forms[0].selectedClassName.value +
+                    "&databaseSchema=" + document.forms[0].databaseSchema.value;
 
 
+        }
+
+        // 	function buttonPressed (){
+        // 		document.getElementById("buttonP").value = "true";
+        // 	}
 
     </script>
 </head>
@@ -79,6 +78,10 @@
         <tr>
             <td>Password</td>
             <td><html:password property="databasePassword"></html:password></td>
+        </tr>
+        <tr>
+            <td>DB schema</td>
+            <td><html:text property="databaseSchema"></html:text></td>
         </tr>
         <tr>
             <td><input type="button" onclick="doPageSubmit('')" value="Display Tables"/></td>
@@ -116,9 +119,12 @@
 
         <input type="button" onclick="doPageSubmit('generateForTable')" value="Generate"/><br><br>
 
+        Database schema: <bean:write name="databaseForm" property="databaseSchema"/><br><br>
         <logic:notEmpty name="databaseForm" property="selectedTableName">
             Selected table: <bean:write name="databaseForm" property="selectedTableName"/>
         </logic:notEmpty>
+
+
         <input type="button" value="continue(change value...)" onclick="forwardToGenerator()"/>
         <%-- 			<jsp:forward page="generator.do">  --%>
         <%-- 			<jsp:param name="table_name" value="<bean:write name="databaseForm" property="selectedTableName" />" />  --%>

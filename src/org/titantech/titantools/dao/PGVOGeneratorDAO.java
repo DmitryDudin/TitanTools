@@ -1,18 +1,13 @@
 package org.titantech.titantools.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
+import org.titantech.titantools.dao.bean.SearchPageGeneratorInputBean;
+import org.titantech.titantools.dao.bean.VOFieldToColumnMappingDetails;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.titantech.titantools.dao.bean.SearchPageGeneratorInputBean;
-import org.titantech.titantools.dao.bean.VOFieldToColumnMappingDetails;
 
 
 public class PGVOGeneratorDAO extends BaseDAO implements VOGeneratorDAO {
@@ -50,9 +45,10 @@ public class PGVOGeneratorDAO extends BaseDAO implements VOGeneratorDAO {
     }
 
 
-    public List getDatabaseTables() throws DAOAppException {
+    public List getDatabaseTables(String databaseSchema) throws DAOAppException {
         List listOfTables = new ArrayList();
-        String sql = "SELECT table_name FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE'";
+//        String sql = "SELECT table_name FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE'";
+        String sql = "SELECT table_name FROM information_schema.tables WHERE table_schema='" + databaseSchema + "' AND table_type='BASE TABLE'";
         Statement stmt = null;
         ResultSet rs = null;
         Connection connection = pgDAOFactory.getConnection();
@@ -75,9 +71,9 @@ public class PGVOGeneratorDAO extends BaseDAO implements VOGeneratorDAO {
         return listOfTables;
     }
 
-    public List getListOfSPGInputBeans(String tableName) throws DAOAppException {
+    public List getListOfSPGInputBeans(String tableName, String databaseSchema) throws DAOAppException {
         List out = new ArrayList();
-        String sql = "SELECT * FROM " + tableName + " ";
+        String sql = "SELECT * FROM " + databaseSchema + "." + tableName + " ";
         ResultSet rs = null;
         Statement stmt = null;
         Connection connection = pgDAOFactory.getConnection();

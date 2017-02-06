@@ -89,7 +89,8 @@ public class GeneratorAction extends Action {
                 }
 
                 if ("fillForm".equals(form.getActionName())) {
-                    TableBean table = spg.getTableBean(servletRequest.getParameter("selectedTableName"));
+                    TableBean table = spg.getTableBean(servletRequest.getParameter("selectedTableName"),
+                            servletRequest.getParameter("databaseSchema"));
                     List inputBeans = table.getSpgInputBeanList();
 
                     form.setInputBeans(inputBeans);

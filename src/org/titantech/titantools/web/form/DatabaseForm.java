@@ -23,6 +23,7 @@ public class DatabaseForm extends ActionForm {
     private String databaseName = null;
     private String databaseUser = null;
     private String databasePassword = null;
+    private String databaseSchema = null;
     private Integer databasePort = 5432;
     private List<TableBean> listOfTableBeans = null;
     private Map dbTableMap = null;
@@ -47,6 +48,14 @@ public class DatabaseForm extends ActionForm {
 
             listOfTableBeans.add(table);
         }
+    }
+
+    public String getDatabaseSchema() {
+        return databaseSchema;
+    }
+
+    public void setDatabaseSchema(String databaseSchema) {
+        this.databaseSchema = databaseSchema;
     }
 
     public String getServerName() {

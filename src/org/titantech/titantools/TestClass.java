@@ -8,7 +8,7 @@ public class TestClass {
     public static void main(String[] args) {
         DatabaseMetadataDelegate dbMD = new DatabaseMetadataDelegate();
         try {
-            Map data = dbMD.getDatabaseTablesMap("localhost", "test", "testadmin", "TEST123", 0);
+            Map data = dbMD.getDatabaseTablesMap("localhost", "test", "testadmin", "TEST123", 0, "public");
         } catch (TTAppException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
