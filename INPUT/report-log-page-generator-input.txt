@@ -1,0 +1,450 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1" %>
+<%@taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<%@taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@taglib uri="/WEB-INF/titan-console.tld" prefix="tc"%>
+<%@ page import="ru.scarlettgroup.titanconsole.util.PermissionValidator"%>
+
+<tc:permission resourceName="<%=PermissionValidator.RESOURCE_REPORT_LOG_PAGE%>" actions="!read">
+<jsp:forward page="accessDenied.jsp" />
+</tc:permission>
+
+<jsp:useBean id="manageReportLogForm" scope="request" class="ru.scarlettgroup.titanconsole.web.form.ManageReportLogForm" />
+
+<%
+	String sectionName = "Report Log Search";
+%>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/filtering-ordering.css" rel="stylesheet" type="text/css" media="screen" />
+<script language="javascript1.2" src="scripts/datepicker.js" type="text/javascript"></script>
+<script language="javascript1.2" src="scripts/filtering-ordering-one-at-a-time.js" type="text/javascript"></script>
+
+<script language="javascript1.2">
+
+function doPageSubmit(strutsAction,nextFromPos) {
+	document.forms[0].actionName.value = strutsAction;
+	//document.forms[0].nextFromPosition.value = nextFromPos;
+	document.forms[0].submit();
+}
+
+sortElements=29;
+sortElementsMap = new Array(sortElements);
+sortElementsMap["userIdOrder"]="User Id";
+sortElementsMap["userNameOrder"]="User Name";
+sortElementsMap["activeIndOrder"]="Active Ind";
+sortElementsMap["allowExternalConnectOrder"]="Allow External Connect";
+sortElementsMap["userForSupplierIndOrder"]="User For Supplier Ind";
+sortElementsMap["supplierNameOrder"]="Supplier Name";
+sortElementsMap["innOrder"]="Inn";
+sortElementsMap["createDateOrder"]="Create Date";
+sortElementsMap["reportNameOrder"]="Report Name";
+sortElementsMap["ipAddressOrder"]="Ip Address";
+sortElementsMap["runTimeMillisecondsOrder"]="Run Time Milliseconds";
+sortElementsMap["successOrder"]="Success";
+sortElementsMap["errorMsgOrder"]="Error Msg";
+sortElementsMap["param1Order"]="Param1";
+sortElementsMap["param2Order"]="Param2";
+sortElementsMap["param3Order"]="Param3";
+sortElementsMap["param4Order"]="Param4";
+sortElementsMap["param5Order"]="Param5";
+sortElementsMap["param6Order"]="Param6";
+sortElementsMap["param7Order"]="Param7";
+sortElementsMap["param8Order"]="Param8";
+sortElementsMap["param9Order"]="Param9";
+sortElementsMap["param10Order"]="Param10";
+sortElementsMap["param11Order"]="Param11";
+sortElementsMap["param12Order"]="Param12";
+sortElementsMap["param13Order"]="Param13";
+sortElementsMap["param14Order"]="Param14";
+sortElementsMap["param15Order"]="Param15";
+sortElementsMap["param16Order"]="Param16";
+
+sortAnchorMap = new Array(sortElements);
+sortAnchorMap[0]="userIdOrderAnchorID";
+sortAnchorMap[1]="userNameOrderAnchorID";
+sortAnchorMap[2]="activeIndOrderAnchorID";
+sortAnchorMap[3]="allowExternalConnectOrderAnchorID";
+sortAnchorMap[4]="userForSupplierIndOrderAnchorID";
+sortAnchorMap[5]="supplierNameOrderAnchorID";
+sortAnchorMap[6]="innOrderAnchorID";
+sortAnchorMap[7]="createDateOrderAnchorID";
+sortAnchorMap[8]="reportNameOrderAnchorID";
+sortAnchorMap[9]="ipAddressOrderAnchorID";
+sortAnchorMap[10]="runTimeMillisecondsOrderAnchorID";
+sortAnchorMap[11]="successOrderAnchorID";
+sortAnchorMap[12]="errorMsgOrderAnchorID";
+sortAnchorMap[13]="param1OrderAnchorID";
+sortAnchorMap[14]="param2OrderAnchorID";
+sortAnchorMap[15]="param3OrderAnchorID";
+sortAnchorMap[16]="param4OrderAnchorID";
+sortAnchorMap[17]="param5OrderAnchorID";
+sortAnchorMap[18]="param6OrderAnchorID";
+sortAnchorMap[19]="param7OrderAnchorID";
+sortAnchorMap[20]="param8OrderAnchorID";
+sortAnchorMap[21]="param9OrderAnchorID";
+sortAnchorMap[22]="param10OrderAnchorID";
+sortAnchorMap[23]="param11OrderAnchorID";
+sortAnchorMap[24]="param12OrderAnchorID";
+sortAnchorMap[25]="param13OrderAnchorID";
+sortAnchorMap[26]="param14OrderAnchorID";
+sortAnchorMap[27]="param15OrderAnchorID";
+sortAnchorMap[28]="param16OrderAnchorID";
+
+filterElementNameMap = new Array();
+filterElementNameMap[0]="userId";
+filterElementNameMap[1]="userName";
+filterElementNameMap[2]="activeInd";
+filterElementNameMap[3]="allowExternalConnect";
+filterElementNameMap[4]="userForSupplierInd";
+filterElementNameMap[5]="supplierName";
+filterElementNameMap[6]="inn";
+filterElementNameMap[7]="createDateFrom";
+filterElementNameMap[8]="createDateTo";
+filterElementNameMap[9]="reportName";
+filterElementNameMap[10]="ipAddress";
+filterElementNameMap[11]="runTimeMillisecondsFrom";
+filterElementNameMap[12]="runTimeMillisecondsTo";
+filterElementNameMap[13]="success";
+filterElementNameMap[14]="errorMsg";
+filterElementNameMap[15]="param1";
+filterElementNameMap[16]="param2";
+filterElementNameMap[17]="param3";
+filterElementNameMap[18]="param4";
+filterElementNameMap[19]="param5";
+filterElementNameMap[20]="param6";
+filterElementNameMap[21]="param7";
+filterElementNameMap[22]="param8";
+filterElementNameMap[23]="param9";
+filterElementNameMap[24]="param10";
+filterElementNameMap[25]="param11";
+filterElementNameMap[26]="param12";
+filterElementNameMap[27]="param13";
+filterElementNameMap[28]="param14";
+filterElementNameMap[29]="param15";
+filterElementNameMap[30]="param16";
+
+</script>
+<body>
+<%@ include file="header.jsp" %>
+<BR>
+<html:form action="manageReportLogs">
+<html:hidden property="actionName" name="manageReportLogForm"/>
+
+<!-- ordering start -->
+<html:hidden property="orderingOfOrderElements" name="manageReportLogForm"/>
+
+<html:hidden property="userIdOrder" name="manageReportLogForm"/>
+<html:hidden property="userNameOrder" name="manageReportLogForm"/>
+<html:hidden property="activeIndOrder" name="manageReportLogForm"/>
+<html:hidden property="allowExternalConnectOrder" name="manageReportLogForm"/>
+<html:hidden property="userForSupplierIndOrder" name="manageReportLogForm"/>
+<html:hidden property="supplierNameOrder" name="manageReportLogForm"/>
+<html:hidden property="innOrder" name="manageReportLogForm"/>
+<html:hidden property="createDateOrder" name="manageReportLogForm"/>
+<html:hidden property="reportNameOrder" name="manageReportLogForm"/>
+<html:hidden property="ipAddressOrder" name="manageReportLogForm"/>
+<html:hidden property="runTimeMillisecondsOrder" name="manageReportLogForm"/>
+<html:hidden property="successOrder" name="manageReportLogForm"/>
+<html:hidden property="errorMsgOrder" name="manageReportLogForm"/>
+<html:hidden property="param1Order" name="manageReportLogForm"/>
+<html:hidden property="param2Order" name="manageReportLogForm"/>
+<html:hidden property="param3Order" name="manageReportLogForm"/>
+<html:hidden property="param4Order" name="manageReportLogForm"/>
+<html:hidden property="param5Order" name="manageReportLogForm"/>
+<html:hidden property="param6Order" name="manageReportLogForm"/>
+<html:hidden property="param7Order" name="manageReportLogForm"/>
+<html:hidden property="param8Order" name="manageReportLogForm"/>
+<html:hidden property="param9Order" name="manageReportLogForm"/>
+<html:hidden property="param10Order" name="manageReportLogForm"/>
+<html:hidden property="param11Order" name="manageReportLogForm"/>
+<html:hidden property="param12Order" name="manageReportLogForm"/>
+<html:hidden property="param13Order" name="manageReportLogForm"/>
+<html:hidden property="param14Order" name="manageReportLogForm"/>
+<html:hidden property="param15Order" name="manageReportLogForm"/>
+<html:hidden property="param16Order" name="manageReportLogForm"/>
+<!-- ordering end -->
+
+<html:errors/>
+
+<table border="1" style="width:8150px">
+<caption><EM>Report Log Search</EM></caption>
+	<thead>
+		<tr>
+			<td class="header" style="width:50px">Row</td>
+			<td class="header" style="width:50px">User Id</td>
+			<td class="header" style="width:150px">User Name</td>
+			<td class="header" style="width:150px">Active Ind</td>
+			<td class="header" style="width:150px">Allow External Connect</td>
+			<td class="header" style="width:150px">User For Supplier Ind</td>
+			<td class="header" style="width:350px">Supplier Name</td>
+			<td class="header" style="width:200px">Inn</td>
+			<td class="header" style="width:150px">Create Date</td>
+			<td class="header" style="width:350px">Report Name</td>
+			<td class="header" style="width:150px">Ip Address</td>
+			<td class="header" style="width:150px">Run Time Milliseconds</td>
+			<td class="header" style="width:150px">Success</td>
+			<td class="header" style="width:350px">Error Msg</td>
+			<td class="header" style="width:350px">Param1</td>
+			<td class="header" style="width:350px">Param2</td>
+			<td class="header" style="width:350px">Param3</td>
+			<td class="header" style="width:350px">Param4</td>
+			<td class="header" style="width:350px">Param5</td>
+			<td class="header" style="width:350px">Param6</td>
+			<td class="header" style="width:350px">Param7</td>
+			<td class="header" style="width:350px">Param8</td>
+			<td class="header" style="width:350px">Param9</td>
+			<td class="header" style="width:350px">Param10</td>
+			<td class="header" style="width:350px">Param11</td>
+			<td class="header" style="width:350px">Param12</td>
+			<td class="header" style="width:350px">Param13</td>
+			<td class="header" style="width:350px">Param14</td>
+			<td class="header" style="width:350px">Param15</td>
+			<td class="header" style="width:350px">Param16</td>
+		</tr>
+	 	<tr>
+ 		<td style="width:50px">&nbsp;</td>
+
+		<td class="filter" style="width:50px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="userId" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="userIdOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].userIdOrder)"><bean:write name="manageReportLogForm" property="userIdOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:150px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="userName" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="userNameOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].userNameOrder)"><bean:write name="manageReportLogForm" property="userNameOrder"/></a></td></tr>
+			</table>
+		</div></td>
+
+		<td class="filter" style="width:150px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="activeInd" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="activeIndOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].activeIndOrder)"><bean:write name="manageReportLogForm" property="activeIndOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:150px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="allowExternalConnect" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="allowExternalConnectOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].allowExternalConnectOrder)"><bean:write name="manageReportLogForm" property="allowExternalConnectOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:150px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="userForSupplierInd" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="userForSupplierIndOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].userForSupplierIndOrder)"><bean:write name="manageReportLogForm" property="userForSupplierIndOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="supplierName" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="supplierNameOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].supplierNameOrder)"><bean:write name="manageReportLogForm" property="supplierNameOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:200px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="inn" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="innOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].innOrder)"><bean:write name="manageReportLogForm" property="innOrder"/></a></td></tr>
+			</table>
+		</div></td>
+
+		<td class="filter"><div class="filter">
+			<table class="filter">
+			<tr>
+				<td>From <a href="javascript:show_calendar('forms[0].createDateFrom');"><img src="images/calendar.gif" class="calendarFilter" alt="Date picker"></a></td>
+				<td><html:text name="manageReportLogForm" property="createDateFrom" onchange="testDate(this);" styleClass="filter" /></td>
+			</tr>
+			<tr><td>To <a href="javascript:show_calendar('forms[0].createDateTo');"><img src="images/calendar.gif" class="calendarFilter" alt="Date picker"></a></td>
+				<td><html:text name="manageReportLogForm" property="createDateTo" onchange="testDate(this);" styleClass="filter" /></td>
+			</tr>
+			<tr><td colspan="2" align="center"><a id="createDateOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].createDateOrder)"><bean:write name="manageReportLogForm" property="createDateOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="reportName" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="reportNameOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].reportNameOrder)"><bean:write name="manageReportLogForm" property="reportNameOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:150px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="ipAddress" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="ipAddressOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].ipAddressOrder)"><bean:write name="manageReportLogForm" property="ipAddressOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:150px"><div class="filter">
+			<table class="filter">
+			<tr>
+				<td>From</td>
+				<td><html:text name="manageReportLogForm" property="runTimeMillisecondsFrom" styleClass="filter" /></td>
+			</tr>
+			<tr><td>To</td>
+				<td><html:text name="manageReportLogForm" property="runTimeMillisecondsTo" styleClass="filter" /></td>
+			</tr>
+			<tr><td colspan="2" align="center"><a id="runTimeMillisecondsOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].runTimeMillisecondsOrder)"><bean:write name="manageReportLogForm" property="runTimeMillisecondsOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:150px"><div class="filter">
+			<table class="filter"  border="10">
+			<tr><td><html:text name="manageReportLogForm" property="errorMsg" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="errorMsgOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].errorMsgOrder)"><bean:write name="manageReportLogForm" property="errorMsgOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="errorMsg" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="errorMsgOrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].errorMsgOrder)"><bean:write name="manageReportLogForm" property="errorMsgOrder"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param1" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param1OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param1Order)"><bean:write name="manageReportLogForm" property="param1Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param2" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param2OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param2Order)"><bean:write name="manageReportLogForm" property="param2Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param3" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param3OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param3Order)"><bean:write name="manageReportLogForm" property="param3Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param4" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param4OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param4Order)"><bean:write name="manageReportLogForm" property="param4Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param5" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param5OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param5Order)"><bean:write name="manageReportLogForm" property="param5Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param6" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param6OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param6Order)"><bean:write name="manageReportLogForm" property="param6Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param7" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param7OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param7Order)"><bean:write name="manageReportLogForm" property="param7Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param8" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param8OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param8Order)"><bean:write name="manageReportLogForm" property="param8Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param9" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param9OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param9Order)"><bean:write name="manageReportLogForm" property="param9Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param10" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param10OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param10Order)"><bean:write name="manageReportLogForm" property="param10Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param11" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param11OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param11Order)"><bean:write name="manageReportLogForm" property="param11Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param12" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param12OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param12Order)"><bean:write name="manageReportLogForm" property="param12Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param13" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param13OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param13Order)"><bean:write name="manageReportLogForm" property="param13Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param14" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param14OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param14Order)"><bean:write name="manageReportLogForm" property="param14Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param15" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param15OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param15Order)"><bean:write name="manageReportLogForm" property="param15Order"/></a></td></tr>
+			</table>
+		</div></td>
+		<td class="filter" style="width:350px"><div class="filter">
+			<table class="filter">
+			<tr><td><html:text name="manageReportLogForm" property="param16" styleClass="filter" /></td></tr>
+			<tr><td align="center"><a id="param16OrderAnchorID" style="cursor:pointer" onclick="updateOrdering(this, document.forms[0].param16Order)"><bean:write name="manageReportLogForm" property="param16Order"/></a></td></tr>
+			</table>
+		</div></td>
+		</tr>
+		<tr><td colspan="30" align="center">
+		<table style="width:400px" border="0"><tr>
+			<td><input type="button" onclick="doPageSubmit('retrieve','0')" name="subButton" value="Retrieve"/></td>
+			<td><input type="button" onclick="clearFiltersAndOrder()" name="clearButton" value="Clear Filters"/></td>
+			<td><div id="ORDER_DIV" class="ordering"></div><script>loadOrderingElementsOrder();</script></td>
+		</tr></table>
+		</td></tr>
+		</thead>
+		<tbody>
+		<logic:notEmpty name="manageReportLogForm"  property="list">
+		<logic:iterate id="rec" name="manageReportLogForm"  property="list" type="ru.scarlettgroup.titanconsole.web.bean.ReportLogVO" indexId="i" >
+		<tr>
+		<td class="data"><%=(i+1)%></td>
+		<td class="data"><a href="editReportLog.do?actionName=open&userId=<bean:write name="rec"  property="userId"/>"><bean:write name="rec"  property="userId"/></a></td>
+		<td class="data"><bean:write name="rec"  property="userName"/></td>
+		<td class="data"><bean:write name="rec"  property="activeInd"/></td>
+		<td class="data"><bean:write name="rec"  property="allowExternalConnect"/></td>
+		<td class="data"><bean:write name="rec"  property="userForSupplierInd"/></td>
+		<td class="data"><bean:write name="rec"  property="supplierName"/></td>
+		<td class="data"><bean:write name="rec"  property="inn"/></td>
+		<td class="data"><bean:write name="rec"  property="createDate"/></td>
+		<td class="data"><bean:write name="rec"  property="reportName"/></td>
+		<td class="data"><bean:write name="rec"  property="ipAddress"/></td>
+		<td class="data"><bean:write name="rec"  property="runTimeMilliseconds"/></td>
+		<td class="data"><bean:write name="rec"  property="success"/></td>
+		<td class="data"><bean:write name="rec"  property="errorMsg"/></td>
+		<td class="data"><bean:write name="rec"  property="param1"/></td>
+		<td class="data"><bean:write name="rec"  property="param2"/></td>
+		<td class="data"><bean:write name="rec"  property="param3"/></td>
+		<td class="data"><bean:write name="rec"  property="param4"/></td>
+		<td class="data"><bean:write name="rec"  property="param5"/></td>
+		<td class="data"><bean:write name="rec"  property="param6"/></td>
+		<td class="data"><bean:write name="rec"  property="param7"/></td>
+		<td class="data"><bean:write name="rec"  property="param8"/></td>
+		<td class="data"><bean:write name="rec"  property="param9"/></td>
+		<td class="data"><bean:write name="rec"  property="param10"/></td>
+		<td class="data"><bean:write name="rec"  property="param11"/></td>
+		<td class="data"><bean:write name="rec"  property="param12"/></td>
+		<td class="data"><bean:write name="rec"  property="param13"/></td>
+		<td class="data"><bean:write name="rec"  property="param14"/></td>
+		<td class="data"><bean:write name="rec"  property="param15"/></td>
+		<td class="data"><bean:write name="rec"  property="param16"/></td>
+		</tr>
+		</logic:iterate>
+		</logic:notEmpty>
+		</tbody>
+	</table>
+	<BR>
+	
+	<input type="button" onclick="doPageSubmit('new','0')" name="addNewRecordButton" value="Add New Report Log"/>
+	</html:form>
+	
+	</body>
+	</html>

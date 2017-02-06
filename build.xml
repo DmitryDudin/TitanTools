@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="rebuild" name="TitanTools">
+
+    <property file="build.properties"/>
+    <property file="version.properties"/>
+    <property name="src" value="src"/>
+
+    <path id="compile.classpath">
+        <pathelement location="${build.dir}"/>
+        <!--pathelement location="${titantoolssharedobjects.project.home}/ant-build/classes"/-->
+        <fileset dir="${servlet.lib}">
+            <include name="${servlets.jar}"/>
+            <include name="${jta.jar}"/>
+        </fileset>
+        <fileset dir="${STRUTS_LIB}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${jakarta-commons-net-lib}">
+            <include name="commons-net-1.4.1.jar"/>
+        </fileset>
+        <fileset dir="${log4j.home}">
+            <include name="${log4j.jar}"/>
+        </fileset>
+        <fileset dir="${postgresql.home}">
+            <include name="${postgresql.64bit.classes.jar}"/>
+        </fileset>
+    </path>
+
+    <target name="build.related.projects">
+        <!--ant dir="${titantoolssharedobjects.project.home}" inheritAll="false" antfile="${titantoolssharedobjects.project.home}/build.xml"-->
+        <!--property file="config/subproject/default.properties"/-->
+        <!--/ant-->
+    </target>
+
+    <target depends="" name="compile.java">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.dir}/classes"/>
+        <!--First let's compile the classes-->
+        <javac debug="true" executable="${jdk.home}/bin/javac" deprecation="true" fork="true"
+               destdir="${build.dir}/classes" nowarn="false" classpathref="compile.classpath">
+            <src path="${src}"/>
+        </javac>
+    </target>
+
+    <target name="ReleaseVersionUpdator">
+        <copy file="${titantools.web.dir}/release.jsp.TEMPLATE" tofile="${titantools.web.dir}/release.jsp"
+              overwrite="true">
+            <filterchain>
+                <replacetokens>
+                    <token key="release-number" value="${release-number}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+    </target>
+
+    <!-- war -->
+    <target depends="build.related.projects,compile.java" name="generate.titantools.war">
+        <mkdir dir="${build.dir}/${titantools.dest.dir}"/>
+        <mkdir dir="${build.dir}/${titantools.dest.dir}/META-INF"/>
+        <copy file="${titantools.web.dir}/WEB-INF/web.xml.TEMPLATE"
+              tofile="${build.dir}/${titantools.dest.dir}/WEB-INF/web.xml" overwrite="true">
+            <filterchain>
+                <replacetokens>
+                    <token key="WEB-APP-NAME" value="${titantools.name}"/>
+                    <token key="STARTUP-CLASS-NAME" value="${titantools.startup.class.name}"/>
+                    <token key="CONF-PROPS-FILE-NAME" value="${titantools.conf.prop.file-name}"/>
+                    <token key="AUTH-FILTER-CLASS-NAME" value="${titantools.authentication.filter}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+        <copy file="${titantools.web.dir}/META-INF/MANIFEST.MF.TEMPLATE"
+              tofile="${build.dir}/${titantools.dest.dir}/META-INF/MANIFEST.MF" overwrite="true">
+            <filterchain>
+                <replacetokens>
+                    <token key="log4j-jar-file-name" value="WEB-INF/lib/${log4j.jar}"/>
+                    <token key="postgresql-jar-file-name" value="WEB-INF/lib/${postgresql.classes.jar}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+        <copy file="${titantools.web.dir}/META-INF/context.xml.TEMPLATE"
+              tofile="${build.dir}/${titantools.dest.dir}/META-INF/context.xml" overwrite="true">
+            <filterchain>
+                <replacetokens>
+                    <token key="WEB-APP-NAME" value="${titantools.name}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+
+        <war compress="false"
+             destfile="${build.dir}/${titantools.dest.dir}/${titantools.archive.name}"
+             webxml="${build.dir}/${titantools.dest.dir}/WEB-INF/web.xml"
+             manifest="${build.dir}/${titantools.dest.dir}/META-INF/MANIFEST.MF">
+            <classes dir="${titantools.web.dir}/WEB-INF/classes">
+                <include name="*.properties"/>
+            </classes>
+            <classes dir="${build.dir}/classes">
+                <include name="**/*.class"/>
+            </classes>
+            <!--classes dir="${titantoolssharedobjects.project.home}/ant-build/classes">
+                <include name="**/*.class"/>
+            </classes-->
+            <classes dir="${src}">
+                <include name="**/*.properties"/>
+                <include name="**/*.template"/>
+            </classes>
+            <lib dir="${titantools.web.dir}/WEB-INF/lib">
+                <include name="*.jar"/>
+            </lib>
+            <lib dir="${postgresql.home}">
+                <include name="${postgresql.classes.jar}"/>
+            </lib>
+            <lib dir="${log4j.home}">
+                <include name="${log4j.jar}"/>
+            </lib>
+            <zipfileset dir="${titantools.web.dir}">
+                <include name="*.jsp"/>
+                <include name="*.html"/>
+            </zipfileset>
+            <zipfileset dir="${titantools.web.dir}/css" prefix="css">
+                <include name="*.css"/>
+            </zipfileset>
+            <zipfileset dir="${titantools.web.dir}/images" prefix="images">
+                <include name="*.gif"/>
+                <include name="*.jpg"/>
+                <include name="*.png"/>
+            </zipfileset>
+            <zipfileset dir="${titantools.web.dir}/scripts" prefix="scripts">
+                <include name="*.js"/>
+            </zipfileset>
+            <zipfileset dir="${titantools.web.dir}/scripts/flot" prefix="scripts/flot">
+                <include name="*.js"/>
+            </zipfileset>
+            <zipfileset dir="${build.dir}/${titantools.dest.dir}/META-INF" prefix="META-INF">
+                <include name="*.xml"/>
+            </zipfileset>
+            <webinf dir="${titantools.web.dir}/WEB-INF">
+                <include name="*.tld"/>
+                <include name="*.xml"/>
+            </webinf>
+        </war>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target depends="generate.titantools.war" name="make"/>
+    <target depends="clean,make" name="rebuild"/>
+
+    <target depends="rebuild" name="deploy">
+        <delete dir="${deploy.web.dir}/${titantools.name}"/>
+        <copy file="${build.dir}/${titantools.dest.dir}/${titantools.archive.name}"
+              tofile="${deploy.web.dir}/${titantools.archive.name}" overwrite="true"/>
+    </target>
+
+</project>
+

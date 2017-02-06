@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+    <form-beans>
+        <form-bean name="generatorForm" type="org.titantech.titantools.web.form.GeneratorForm"/>
+        <form-bean name="databaseForm" type="org.titantech.titantools.web.form.DatabaseForm"/>
+    </form-beans>
+
+    <global-forwards type="org.apache.struts.action.ActionForward">
+        <!--forward name="app-error" path="/applicationError.jsp" redirect="false" /-->
+        <forward name="accessDenied" path="/accessDenied.jsp" redirect="false"/>
+        <forward name="closePage" path="/closePage.jsp" redirect="false"/>
+        <forward name="action-token-error" path="/actionTokenError.jsp" redirect="false"/>
+    </global-forwards>
+
+    <action-mappings>
+        <action name="generatorForm"
+                type="org.titantech.titantools.web.action.GeneratorAction"
+                validate="false"
+                scope="request"
+                path="/generator"
+                input="/generator.jsp">
+            <forward name="success" path="/generator.jsp"/>
+            <forward name="error" path="/generator.jsp"/>
+        </action>
+        <action name="databaseForm"
+                type="org.titantech.titantools.web.action.DatabaseAction"
+                validate="false"
+                scope="request"
+                path="/database"
+                input="/database.jsp">
+            <forward name="success" path="/database.jsp"/>
+            <forward name="error" path="/database.jsp"/>
+
+        </action>
+    </action-mappings>
+
+    <message-resources null="false" parameter="titantools"/>
+    <message-resources parameter="MessageResources"/>
+</struts-config>
+
+

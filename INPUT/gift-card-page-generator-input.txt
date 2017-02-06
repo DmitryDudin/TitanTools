@@ -1,0 +1,37 @@
+SQL=select * from gift_card... $WHERE$ $ORDER$
+DBTableName=gift_card
+DAOInterfaceName=GiftCardDAO
+DAOImplementationName=PGGiftCardDAO
+DAOVOName=GiftCard
+DelegateName=GiftCardDelegate
+FilterVOName=GiftCardFilter
+StrutsActionName=GiftCardAction
+SearchPageStrutsFormName=GiftCardForm
+FormBeanVOName=GiftCardVO
+SearchTableCaption=Gift Card Search
+AddRecordButtonDisplayText=Add New Gift Card
+AddSingleRecordAction=editGiftCard
+JSPFileNameNoExtension=manageGiftCards
+EditJSPFileNameNoExtension=editGiftCard
+EditTableCaption=Gift Card
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditGiftCardForm
+EditActionName=EditGiftCardAction
+
+total.fields=12
+
+field.1=card_id,NUMERIC,filterable:false,sortable:true,wildcards:false,range:false,javatype:Long,mandatory:false
+field.2=barcode,text,filterable:true,sortable:false,wildcards:true,range:false,javatype:String,mandatory:false
+field.3=pincode,text,filterable:true,sortable:false,wildcards:true,range:false,javatype:String,mandatory:false
+field.4=status,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.5=purchase_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.6=purchased_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.7=purchased_at_store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.8=redeemed_amount,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.9=redeemed_at_store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.10=redeemed_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.11=expiration_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.12=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+
+
+

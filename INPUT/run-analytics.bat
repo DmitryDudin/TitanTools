@@ -1,0 +1,1 @@
+java -Xms256M -Xmx1200M -cp .;E:/Apps/jdk1.6.0_21/lib/tools.jar;e:/dev/PostgreSQLTools/lib/log4j-1.2.12/log4j-1.2.12.jar;E:/dev/PostgreSQLTools/lib/postgresql/postgresql-8.4-701.jdbc3.jar; ru.scarlettgroup.titan.analytics.DiscoverMasterProductsWithConflictingProducts

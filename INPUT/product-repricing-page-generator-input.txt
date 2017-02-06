@@ -1,0 +1,28 @@
+SQL=select * from product_repricing... $WHERE$ $ORDER$
+DBTableName=product_repricing
+DAOInterfaceName=ProductRepricingDAO
+DAOImplementationName=PGProductRepricingDAO
+DAOVOName=ProductRepricing
+DelegateName=ProductRepricingDelegate
+FilterVOName=ProductRepricingFilter
+StrutsActionName=ManageProductRepricingAction
+SearchPageStrutsFormName=ManageProductRepricingForm
+FormBeanVOName=ProductRepricingVO
+SearchTableCaption=Product Repricing Search
+AddRecordButtonDisplayText=Add New Product Repricing
+AddSingleRecordAction=editProductRepricing
+JSPFileNameNoExtension=manageProductRepricings
+EditJSPFileNameNoExtension=editProductRepricing
+EditTableCaption=Product Price Change
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditProductRepricingForm
+EditActionName=EditProductRepricingAction
+total.fields=6
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=repricing_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.3=status,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.4=apply_by_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.5=applied_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.6=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+
+

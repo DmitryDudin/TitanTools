@@ -1,0 +1,40 @@
+SQL=select * from review_control ... $WHERE$ $ORDER$
+DBTableName=review_control
+DAOInterfaceName=ReviewControlDAO
+DAOImplementationName=PGReviewControlDAO
+DAOVOName=ReviewControl
+DelegateName=ReviewControlDelegate
+FilterVOName=ReviewControlFilter
+StrutsActionName=ManageReviewControlAction
+SearchPageStrutsFormName=ManageReviewControlForm
+FormBeanVOName=ReviewControlVO
+SearchTableCaption=Review Control Search
+AddRecordButtonDisplayText=Add New Review Control
+AddSingleRecordAction=editReviewControl
+JSPFileNameNoExtension=manageReviewControls
+EditJSPFileNameNoExtension=editReviewControl
+EditTableCaption=Review Control
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditReviewControlForm
+EditActionName=EditReviewControlAction
+
+total.fields=17
+
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=record_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.3=review_record_type,varchar(20),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.4=review_record_action,varchar(20),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.5=review_record_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.6=review_original_record_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.7=status,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.8=request_comment,varchar(10000),filterable:true,sortable:false,wildcards:true,range:false,javatype:String,mandatory:false
+field.9=reviewer,varchar(50),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.10=reviewer_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.11=review_comment,varchar(10000),filterable:true,sortable:false,wildcards:true,range:false,javatype:String,mandatory:false
+field.12=review_result_status,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.13=review_request_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.14=review_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.15=apply_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.16=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.17=update_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+

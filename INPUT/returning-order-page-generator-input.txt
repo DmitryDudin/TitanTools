@@ -1,0 +1,42 @@
+SQL=select * from returning_order... $WHERE$ $ORDER$
+DBTableName=returning_order
+DAOInterfaceName=ReturningOrderDAO
+DAOImplementationName=PGReturningOrderDAO
+DAOVOName=ReturningOrder
+DelegateName=ReturningOrderDelegate
+FilterVOName=ReturningOrderFilter
+StrutsActionName=ManageReturningOrderAction
+SearchPageStrutsFormName=ManageReturningOrderForm
+FormBeanVOName=ReturningOrderVO
+SearchTableCaption=Returning Order Search
+AddRecordButtonDisplayText=Add New Returning Order
+AddSingleRecordAction=editReturningOrder
+JSPFileNameNoExtension=manageReturningOrders
+EditJSPFileNameNoExtension=editReturningOrder
+EditTableCaption=Returning Order
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditReturningOrderForm
+EditActionName=EditReturningOrderAction
+total.fields=19
+
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=order_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.3=status,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.4=supplier_id,NUMERIC,filterable:true,sortable:true,wildcards:false,range:false,javatype:Long,mandatory:false
+field.5=order_number,varchar(20),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.6=sf_number,varchar(20),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.7=amount_products,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:Long,mandatory:false
+field.8=amount_items,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:Long,mandatory:false
+field.9=purchase_sum_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.10=sale_sum_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.11=tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.12=discarded,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.13=packaging_to_be_returned,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.14=comment,varchar(1000),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.15=returning_order_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.16=sf_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.17=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.18=save_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.19=update_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+
+

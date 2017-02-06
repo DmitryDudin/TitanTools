@@ -1,0 +1,32 @@
+SQL=select store_id, org_id, address_id, contact_id, name, store_ip, description, active_flag, system_type_flag, ffs_to_phobos_switch_date, text_prefix_doc_number from store $WHERE$ $ORDER$
+DBTableName=store
+DAOInterfaceName=StoreDAO
+DAOImplementationName=PGStoreDAO
+DAOVOName=Store
+DelegateName=StoreDelegate
+FilterVOName=StoreFilter
+StrutsActionName=ManageStoreAction
+SearchPageStrutsFormName=ManageStoreForm
+FormBeanVOName=StoreVO
+SearchTableCaption=Store Search
+AddRecordButtonDisplayText=Add New Store
+AddSingleRecordAction=editStore
+JSPFileNameNoExtension=manageStores
+EditJSPFileNameNoExtension=editStore
+PermissionResourceConstantName=RESOURCE_MANAGE_STORE_PAGE
+EditPageStrutsFormName=EditStoreForm
+EditActionName=EditStoreAction
+total.fields=11
+
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=org_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.3=address_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.4=contact_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.5=name,varchar(100),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:true
+field.6=store_ip,varchar(100),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.7=description,varchar(1000),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.8=active_flag,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:Boolean,mandatory:false
+field.9=system_type_flag,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:Character,mandatory:false
+field.10=ffs_to_phobos_switch_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.11=text_prefix_doc_number,varchar(10),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:true
+

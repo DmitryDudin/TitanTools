@@ -1,0 +1,27 @@
+SQL=select INN, address_id, contact_id, name, description, director_name_on_documents from organization $WHERE$ $ORDER$
+DBTableName=organization
+DAOInterfaceName=OrganizationDAO
+DAOImplementationName=PGOrganizationDAO
+DAOVOName=Organization
+DelegateName=OrganizationDelegate
+FilterVOName=OrganizationFilter
+StrutsActionName=ManageOrganizationAction
+SearchPageStrutsFormName=ManageOrganizationForm
+FormBeanVOName=OrganizationVO
+SearchTableCaption=Organization Search
+AddRecordButtonDisplayText=Add New Organization
+AddSingleRecordAction=editOrganization
+JSPFileNameNoExtension=manageOrganizations
+EditJSPFileNameNoExtension=editOrganization
+PermissionResourceConstantName=RESOURCE_ORGANIZATION_PAGE
+EditPageStrutsFormName=EditOrganizationForm
+EditActionName=EditOrganizationAction
+total.fields=7
+
+field.1=org_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=INN,varchar(13),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:true
+field.3=address_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.4=contact_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.5=name,varchar(100),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:true
+field.6=description,varchar(1000),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.7=director_name_on_documents,varchar(200),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false

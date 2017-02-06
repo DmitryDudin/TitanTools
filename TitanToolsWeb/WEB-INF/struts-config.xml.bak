@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <form-beans>
+    <form-bean name="loginForm" type="ru.scarlettgroup.titanconsole.web.form.LoginForm" />
+    <form-bean name="manageUsersForm" type="ru.scarlettgroup.titanconsole.web.form.ManageUsersForm" />
+    <form-bean name="storeDataLoadReportForm" type="ru.scarlettgroup.titanconsole.web.form.StoreDataLoadReportForm" />
+    <form-bean name="salesReportExpandedReceiptForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportExpandedReceiptForm" />
+    <form-bean name="salesReportSummarizedSalesByItemForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportSummarizedSalesByItemForm" />
+    <form-bean name="salesReportSummarizedSalesByMasterItemForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportSummarizedSalesByMasterItemForm" />    
+    <form-bean name="salesReportSummarizedSalesByStoreForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportSummarizedSalesByStoreForm" />
+    <form-bean name="salesReportComparativePeriodicAnalysisForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportComparativePeriodicAnalysisForm" />
+    <form-bean name="salesReportSummarizedSalesByLabelsForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportSummarizedSalesByLabelsForm" />
+    <form-bean name="salesReportSummarizedSalesBySpecifiedLabelForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportSummarizedSalesBySpecifiedLabelForm" />
+    <form-bean name="salesReportMasterLabelSummarizedSalesComparisonForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportMasterLabelSummarizedSalesComparisonForm" />
+    <form-bean name="salesReportMasterLabelCombinationSummarizedSalesComparisonForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportMasterLabelCombinationSummarizedSalesComparisonForm" />
+    <form-bean name="salesReportMasterLabelSummarizedSalesByStoreComparisonForm" type="ru.scarlettgroup.titanconsole.web.form.SalesReportMasterLabelSummarizedSalesByStoreComparisonForm" />
+    <form-bean name="manageClientDiscountCardsForm" type="ru.scarlettgroup.titanconsole.web.form.ManageClientDiscountCardsForm" />
+    <form-bean name="editClientDiscountCardsForm" type="ru.scarlettgroup.titanconsole.web.form.EditClientDiscountCardsForm" />
+    <form-bean name="clientDiscountCardSearchForm" type="ru.scarlettgroup.titanconsole.web.form.ClientDiscountCardSearchForm" />
+    <form-bean name="frontolFileLoaderReportForm" type="ru.scarlettgroup.titanconsole.web.form.FrontolFileLoaderReportForm" />
+    <form-bean name="manageLabelTypeForm" type="ru.scarlettgroup.titanconsole.web.form.ManageLabelTypeForm" />
+    <form-bean name="editLabelTypeForm" type="ru.scarlettgroup.titanconsole.web.form.EditLabelTypeForm" />
+    <form-bean name="manageMasterLabelForm" type="ru.scarlettgroup.titanconsole.web.form.ManageMasterLabelForm" />
+    <form-bean name="editMasterLabelForm" type="ru.scarlettgroup.titanconsole.web.form.EditMasterLabelForm" />
+    <form-bean name="manageMasterProductForm" type="ru.scarlettgroup.titanconsole.web.form.ManageMasterProductForm" />
+    <form-bean name="editMasterProductForm" type="ru.scarlettgroup.titanconsole.web.form.EditMasterProductForm" />
+    <form-bean name="manageProductForm" type="ru.scarlettgroup.titanconsole.web.form.ManageProductForm" />
+    <form-bean name="editProductForm" type="ru.scarlettgroup.titanconsole.web.form.EditProductForm" />
+    <form-bean name="assignMasterProductForm" type="ru.scarlettgroup.titanconsole.web.form.AssignMasterProductForm" />
+    <form-bean name="masterProductControlPanelForm" type="ru.scarlettgroup.titanconsole.web.form.MasterProductControlPanelForm" />
+
+    <form-bean name="manageBankForm" type="ru.scarlettgroup.titanconsole.web.form.ManageBankForm" />
+    <form-bean name="editBankForm" type="ru.scarlettgroup.titanconsole.web.form.EditBankForm" />
+    <form-bean name="manageSupplierForm" type="ru.scarlettgroup.titanconsole.web.form.ManageSupplierForm" />
+    <form-bean name="editSupplierForm" type="ru.scarlettgroup.titanconsole.web.form.EditSupplierForm" />
+    <form-bean name="manageSubSupplierForm" type="ru.scarlettgroup.titanconsole.web.form.ManageSubSupplierForm" />
+    <form-bean name="editSubSupplierForm" type="ru.scarlettgroup.titanconsole.web.form.EditSubSupplierForm" />
+
+    <form-bean name="manageReportLogForm" type="ru.scarlettgroup.titanconsole.web.form.ManageReportLogForm" />
+  </form-beans>
+
+  <global-forwards type="org.apache.struts.action.ActionForward">
+    <!--forward name="app-error" path="/applicationError.jsp" redirect="false" /-->
+    <forward name="accessDenied" path="/accessDenied.jsp" redirect="false" />
+    <forward name="closePage" path="/closePage.jsp" redirect="false" />
+    <forward name="action-token-error" path="/actionTokenError.jsp" redirect="false"/>
+  </global-forwards>
+
+  <action-mappings>
+    <action name="loginForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.LoginAction"
+    	validate="false"
+    	scope="request"
+    	path="/login"
+    	input="/index.jsp">
+    	<forward name="showlogonpage" path="/index.jsp" />
+		<forward name="success" path="/mainMenu.jsp" />
+		<forward name="error" path="/index.jsp" />
+    </action>
+
+    <action name="manageUsersForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageUsersAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageUsers"
+    	input="/manageUsers.jsp">
+		<forward name="success" path="/manageUsers.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="storeDataLoadReportForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.StoreDataLoadReportAction"
+    	validate="false"
+    	scope="request"
+    	path="/storeDataLoadReport"
+    	input="/storeDataLoadReport.jsp">
+		<forward name="success" path="/storeDataLoadReport.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportExpandedReceiptForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportExpandedReceiptAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportExpandedReceipt"
+    	input="/salesReportExpandedReceipt.jsp">
+		<forward name="success" path="/salesReportExpandedReceipt.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportSummarizedSalesByItemForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportSummarizedSalesByItemAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportSummarizedSalesByItem"
+    	input="/salesReportSummarizedSalesByItem.jsp">
+		<forward name="success" path="/salesReportSummarizedSalesByItem.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportSummarizedSalesByMasterItemForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportSummarizedSalesByMasterItemAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportSummarizedSalesByMasterItem"
+    	input="/salesReportSummarizedSalesByMasterItem.jsp">
+		<forward name="success" path="/salesReportSummarizedSalesByMasterItem.jsp" />
+		<forward name="successTop300" path="/salesReportSummarizedSalesByMasterItemTop300.jsp" />
+		<forward name="business-error" path="/salesReportSummarizedSalesByMasterItem.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportSummarizedSalesByStoreForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportSummarizedSalesByStoreAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportSummarizedSalesByStore"
+    	input="/salesReportSummarizedSalesByStore.jsp">
+		<forward name="success" path="/salesReportSummarizedSalesByStore.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportComparativePeriodicAnalysisForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportComparativePeriodicAnalysisAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportComparativePeriodicAnalysis"
+    	input="/salesReportComparativePeriodicAnalysis.jsp">
+		<forward name="success" path="/salesReportComparativePeriodicAnalysis.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportSummarizedSalesByLabelsForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportSummarizedSalesByLabelsAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportSummarizedSalesByLabels"
+    	input="/salesReportSummarizedSalesByLabels.jsp">
+		<forward name="success" path="/salesReportSummarizedSalesByLabels.jsp" />
+		<forward name="business-error" path="/salesReportSummarizedSalesByLabels.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportSummarizedSalesBySpecifiedLabelForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportSummarizedSalesBySpecifiedLabelAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportSummarizedSalesBySpecifiedLabel"
+    	input="/salesReportSummarizedSalesBySpecifiedLabel.jsp">
+		<forward name="success" path="/salesReportSummarizedSalesBySpecifiedLabel.jsp" />
+		<forward name="business-error" path="/salesReportSummarizedSalesBySpecifiedLabel.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportMasterLabelSummarizedSalesComparisonForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportMasterLabelSummarizedSalesComparisonAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportMasterLabelSummarizedSalesComparison"
+    	input="/salesReportMasterLabelSummarizedSalesComparison.jsp">
+		<forward name="success" path="/salesReportMasterLabelSummarizedSalesComparison.jsp" />
+		<forward name="business-error" path="/salesReportMasterLabelSummarizedSalesComparison.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportMasterLabelSummarizedSalesComparisonForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportMasterLabelSummarizedSalesComparisonAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportMasterLabelSummarizedSalesComparison"
+    	input="/salesReportMasterLabelSummarizedSalesComparison.jsp">
+		<forward name="success" path="/salesReportMasterLabelSummarizedSalesComparison.jsp" />
+		<forward name="business-error" path="/salesReportMasterLabelSummarizedSalesComparison.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportMasterLabelCombinationSummarizedSalesComparisonForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportMasterLabelCombinationSummarizedSalesComparisonAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportMasterLabelCombinationSummarizedSalesComparison"
+    	input="/salesReportMasterLabelCombinationSummarizedSalesComparison.jsp">
+		<forward name="success" path="/salesReportMasterLabelCombinationSummarizedSalesComparison.jsp" />
+		<forward name="business-error" path="/salesReportMasterLabelCombinationSummarizedSalesComparison.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="salesReportMasterLabelSummarizedSalesByStoreComparisonForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.SalesReportMasterLabelSummarizedSalesByStoreComparisonAction"
+    	validate="false"
+    	scope="request"
+    	path="/salesReportMasterLabelSummarizedSalesByStoreComparison"
+    	input="/salesReportMasterLabelSummarizedSalesByStoreComparison.jsp">
+		<forward name="success" path="/salesReportMasterLabelSummarizedSalesByStoreComparison.jsp" />
+		<forward name="business-error" path="/salesReportMasterLabelSummarizedSalesByStoreComparison.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="manageClientDiscountCardsForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageClientDiscountCardsAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageClientDiscountCards"
+    	input="/manageClientDiscountCards.jsp">
+		<forward name="success" path="/manageClientDiscountCards.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/manageClientDiscountCards.jsp" />
+        <forward name="editClientDiscountCards" path="/editClientDiscountCards.do" />
+    </action>
+
+    <action name="editClientDiscountCardsForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.EditClientDiscountCardsAction"
+    	validate="false"
+    	scope="request"
+    	path="/editClientDiscountCards"
+    	input="/editClientDiscountCards.jsp">
+		<forward name="success" path="/editClientDiscountCards.jsp" />
+		<forward name="manageClientDiscountCards" path="/manageClientDiscountCards.do?actionName=open" />
+		<forward name="clientDiscountCardSearch" path="/clientDiscountCardSearch.do?actionName=open" />
+		<forward name="business-error" path="/editClientDiscountCards.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+
+    <action name="clientDiscountCardSearchForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ClientDiscountCardSearchAction"
+    	validate="false"
+    	scope="request"
+    	path="/clientDiscountCardSearch"
+    	input="/clientDiscountCardSearch.jsp">
+		<forward name="success" path="/clientDiscountCardSearch.jsp" />
+		<forward name="graph" path="/clientDiscountCardSalesComparisonGraph.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/clientDiscountCardSearch.jsp" />
+        <forward name="editClientDiscountCards" path="/editClientDiscountCards.do" />
+    </action>
+
+
+    <action name="frontolFileLoaderReportForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.FrontolFileLoaderReportAction"
+    	validate="false"
+    	scope="request"
+    	path="/frontolFileLoaderReport"
+    	input="/frontolFileLoaderReport.jsp">
+		<forward name="success" path="/frontolFileLoaderReport.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/frontolFileLoaderReport.jsp" />
+    </action>
+
+
+    <action name="manageLabelTypeForm"
+	   	type="ru.scarlettgroup.titanconsole.web.action.ManageLabelTypeAction"
+	   	validate="false"
+	   	scope="request"
+	   	path="/manageLabelTypes"
+	   	input="/manageLabelTypes.jsp">
+		<forward name="success" path="/manageLabelTypes.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/manageLabelTypes.jsp" />
+		<forward name="editLabelType" path="/editLabelType.do" />
+    </action>
+
+    <action name="editLabelTypeForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.EditLabelTypeAction"
+    	validate="false"
+    	scope="request"
+    	path="/editLabelType"
+    	input="/editLabelType.jsp">
+		<forward name="success" path="/editLabelType.jsp" />
+		<forward name="manageLabelTypes" path="/manageLabelTypes.do?actionName=open" />
+		<forward name="business-error" path="/editLabelType.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+    </action>
+
+    <action name="manageMasterLabelForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageMasterLabelAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageMasterLabels"
+    	input="/manageMasterLabels.jsp">
+		<forward name="success" path="/manageMasterLabels.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/manageMasterLabels.jsp" />
+        <forward name="editMasterLabel" path="/editMasterLabel.do" />
+    </action>
+
+    <action name="editMasterLabelForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.EditMasterLabelAction"
+    	validate="false"
+    	scope="request"
+    	path="/editMasterLabel"
+    	input="/editMasterLabel.jsp">
+		<forward name="success" path="/editMasterLabel.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/editMasterLabel.jsp" />
+        <forward name="manageMasterLabels" path="/manageMasterLabels.do?actionName=open" />
+    </action>
+
+
+    <action name="manageMasterProductForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageMasterProductAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageMasterProducts"
+    	input="/manageMasterProducts.jsp">
+		<forward name="success" path="/manageMasterProducts.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/manageMasterProducts.jsp" />
+        <forward name="editMasterProduct" path="/editMasterProduct.do" />
+    </action>
+
+    <action name="editMasterProductForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.EditMasterProductAction"
+    	validate="false"
+    	scope="request"
+    	path="/editMasterProduct"
+    	input="/editMasterProduct.jsp">
+		<forward name="success" path="/editMasterProduct.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/editMasterProduct.jsp" />
+        <forward name="manageMasterProducts" path="/manageMasterProducts.do?actionName=open" />
+    </action>
+
+    <!--action name="editProductForm"
+		type="ru.scarlettgroup.titanconsole.web.action.EditProductAction"
+		validate="false"
+		scope="request"
+		path="/editProduct"
+		input="/editProduct.jsp">
+		<forward name="success" path="/editProduct.jsp" />
+		<forward name="error" path="/applicationError.jsp" />
+		<forward name="business-error" path="/editProduct.jsp" />
+        <forward name="manageProducts" path="/manageProducts.do?actionName=open" />
+    </action-->
+
+    <action name="manageProductForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageProductAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageProducts"
+    	input="/manageProducts.jsp">
+        <forward name="success" path="/manageProducts.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/manageProducts.jsp" />
+        <forward name="editMasterProduct" path="/editMasterProduct.do" />
+    </action>
+
+
+    <action name="assignMasterProductForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.AssignMasterProductAction"
+    	validate="false"
+    	scope="request"
+    	path="/assignMasterProducts"
+    	input="/assignMasterProducts.jsp">
+        <forward name="success" path="/assignMasterProducts.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/assignMasterProducts.jsp" />
+        <forward name="editMasterProduct" path="/editMasterProduct.do" />
+    </action>
+
+    <action name="masterProductControlPanelForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.MasterProductControlPanelAction"
+    	validate="false"
+    	scope="request"
+    	path="/masterProductControlPanel"
+    	input="/masterProductControlPanel.jsp">
+        <forward name="success" path="/masterProductControlPanel.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/masterProductControlPanel.jsp" />
+    </action>
+
+ 
+    <action name="manageBankForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageBankAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageBanks"
+    	input="/manageBanks.jsp">
+        <forward name="success" path="/manageBanks.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/manageBanks.jsp" />
+        <forward name="editBank" path="/editBank.do" />
+    </action>
+  
+    <action name="editBankForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.EditBankAction"
+    	validate="false"
+    	scope="request"
+    	path="/editBank"
+    	input="/editBank.jsp">
+        <forward name="success" path="/editBank.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/editBank.jsp" />
+        <forward name="manageBanks" path="/manageBanks.do?actionName=open" />
+    </action>
+
+    <action name="manageSupplierForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageSupplierAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageSupplier"
+    	input="/manageSupplier.jsp">
+        <forward name="success" path="/manageSupplier.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/manageSupplier.jsp" />
+        <forward name="editSupplier" path="/editSupplier.do" />
+    </action>
+
+    <action name="editSupplierForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.EditSupplierAction"
+    	validate="false"
+    	scope="request"
+    	path="/editSupplier"
+    	input="/editSupplier.jsp">
+        <forward name="success" path="/editSupplier.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/editSupplier.jsp" />
+        <forward name="manageSupplier" path="/manageSupplier.do?actionName=open" />
+    </action>
+
+    
+    <action name="manageSubSupplierForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.ManageSubSupplierAction"
+    	validate="false"
+    	scope="request"
+    	path="/manageSubSupplier"
+    	input="/manageSubSupplier.jsp">
+    	<forward name="success" path="/manageSubSupplier.jsp" />
+    	<forward name="error" path="/applicationError.jsp" />
+    	<forward name="business-error" path="/manageSubSupplier.jsp" />
+    	<forward name="editSubSupplier" path="/editSubSupplier.do" />
+    </action>
+
+    <action name="editSubSupplierForm"
+    	type="ru.scarlettgroup.titanconsole.web.action.EditSubSupplierAction"
+    	validate="false"
+    	scope="request"
+    	path="/editSubSupplier"
+    	input="/editSubSupplier.jsp">
+    	<forward name="success" path="/editSubSupplier.jsp" />
+    	<forward name="error" path="/applicationError.jsp" />
+    	<forward name="business-error" path="/editSubSupplier.jsp" />
+    	<forward name="manageSubSupplier" path="/manageSubSupplier.do?actionName=open" />
+    </action>
+
+    <action name="manageReportLogForm"
+        type="ru.scarlettgroup.titanconsole.web.action.ManageReportLogAction"
+        validate="false"
+        scope="request"
+        path="/manageReportLogs"
+        input="/manageReportLogs.jsp">
+        <forward name="success" path="/manageReportLogs.jsp" />
+        <forward name="error" path="/applicationError.jsp" />
+        <forward name="business-error" path="/manageReportLogs.jsp" />
+    </action>
+
+ 
+  </action-mappings>  
+  <message-resources null="false" parameter="tc" />
+</struts-config>

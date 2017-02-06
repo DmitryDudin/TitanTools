@@ -1,0 +1,35 @@
+SQL=select * from product_repricing_item WHERE 1=1 $WHERE$ $ORDER$
+DBTableName=product_repricing_item
+DAOInterfaceName=ProductRepricingItemDAO
+DAOImplementationName=PGProductRepricingItemDAO
+DAOVOName=ProductRepricingItem
+DelegateName=ProductRepricingItemDelegate
+FilterVOName=ProductRepricingItemFilter
+StrutsActionName=ManageProductRepricingItemAction
+SearchPageStrutsFormName=ManageProductRepricingItemForm
+FormBeanVOName=ProductRepricingItemVO
+SearchTableCaption=Product Price Item Change
+AddRecordButtonDisplayText=Add New Product Price Item Change
+AddSingleRecordAction=editProductRepricingItem
+JSPFileNameNoExtension=manageProductRepricingItems
+EditJSPFileNameNoExtension=editProductRepricingItem
+EditTableCaption=Product Price Item Change
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditProductRepricingItemForm
+EditActionName=EditProductRepricingItemAction
+total.fields=13
+
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=repricing_item_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.3=repricing_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.4=master_product_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.5=status,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.6=type,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.7=number_of_repriced_items,NUMERIC,filterable:true,sortable:true,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.8=old_sale_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.9=old_sale_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.10=new_sale_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.11=new_sale_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.12=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.13=update_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+

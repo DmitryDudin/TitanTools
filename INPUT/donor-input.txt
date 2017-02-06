@@ -1,0 +1,33 @@
+SQL=select * from donor... $WHERE$ $ORDER$
+DBTableName=donor
+DAOInterfaceName=DonorDAO
+DAOImplementationName=PGDonorDAO
+DAOVOName=Donor
+DelegateName=DonorDelegate
+FilterVOName=DonorFilter
+StrutsActionName=DonorAction
+SearchPageStrutsFormName=DonorForm
+FormBeanVOName=DonorVO
+SearchTableCaption=Donor Search
+AddRecordButtonDisplayText=Add New Donor
+AddSingleRecordAction=editDonor
+JSPFileNameNoExtension=manageDonors
+EditJSPFileNameNoExtension=editDonor
+EditTableCaption=Donor
+PermissionResourceConstantName=RESOURCE_MANAGE_DONOR_PAGE 
+EditPageStrutsFormName=EditDonorForm
+EditActionName=EditDonorAction
+
+total.fields=8
+
+field.1=donor_id,NUMERIC,filterable:false,sortable:true,wildcards:false,range:false,javatype:Long,mandatory:false,primary:true,serial:true
+field.2=type,text,filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false,primary:false,serial:false
+field.3=name,text,filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false,primary:false,serial:false
+field.4=description,text,filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false,primary:false,serial:false
+field.5=address,text,filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false,primary:false,serial:false
+field.6=phone,text,filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false,primary:false,serial:false
+field.7=email,text,filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false,primary:false,serial:false
+field.8=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false,primary:false,serial:false
+
+
+

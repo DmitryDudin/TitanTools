@@ -1,0 +1,45 @@
+SQL=select * from inventorization_item WHERE 1=1 $WHERE$ $ORDER$
+DBTableName=inventorization_item
+DAOInterfaceName=InventorizationItemDAO
+DAOImplementationName=PGInventorizationItemDAO
+DAOVOName=InventorizationItem
+DelegateName=InventorizationItemDelegate
+FilterVOName=InventorizationItemFilter
+StrutsActionName=ManageInventorizationItemAction
+SearchPageStrutsFormName=ManageInventorizationItemForm
+FormBeanVOName=InventorizationItemVO
+SearchTableCaption=Inventorization Item
+AddRecordButtonDisplayText=Add New Inventorization Item
+AddSingleRecordAction=editInventorizationItem
+JSPFileNameNoExtension=manageInventorizationItems
+EditJSPFileNameNoExtension=editInventorizationItem
+EditTableCaption=Inventorization Item
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditInventorizationItemForm
+EditActionName=EditInventorizationItemAction
+total.fields=23
+
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:true,javatype:Integer,mandatory:false
+field.2=inv_item_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:true,javatype:Long,mandatory:false
+field.3=inv_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:true,javatype:Long,mandatory:false
+field.4=master_product_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:true,javatype:Long,mandatory:false
+field.5=product_instance_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:true,javatype:Long,mandatory:false
+field.6=barcode,varchar(20),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.7=amount_on_master_product_old,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:Integer,mandatory:false
+field.8=amount_on_master_product_new,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:Integer,mandatory:false
+field.9=amount_on_product_instance_old,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:Integer,mandatory:false
+field.10=amount_on_product_instance_new,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:Integer,mandatory:false
+field.11=purchase_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.12=sale_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.13=purchase_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.14=sale_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.15=purchase_sum_old,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.16=purchase_sum_with_tax_old,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.17=purchase_sum_new,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.18=purchase_sum_with_tax_new,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.19=sale_sum_old,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.20=sale_sum_with_tax_old,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.21=sale_sum_new,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.22=sale_sum_with_tax_new,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.23=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+

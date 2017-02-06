@@ -1,0 +1,25 @@
+SQL=select * from subsupplier... $WHERE$ $ORDER$
+DBTableName=subsupplier
+DAOInterfaceName=SubSupplierDAO
+DAOImplementationName=PGSubSupplierDAO
+DAOVOName=SubSupplier
+DelegateName=SubSupplierDelegate
+FilterVOName=SubSupplierFilter
+StrutsActionName=ManageSubSupplierAction
+SearchPageStrutsFormName=ManageSubSupplierForm
+FormBeanVOName=SubSupplierVO
+SearchTableCaption=Sub-Supplier Search
+AddRecordButtonDisplayText=Add New Sub-Supplier
+AddSingleRecordAction=editSubSupplier
+JSPFileNameNoExtension=manageSubSupplier
+EditJSPFileNameNoExtension=editSubSupplier
+EditTableCaption=Sub-Supplier
+PermissionResourceConstantName=RESOURCE_MANAGE_SUPPLIER_PAGE
+EditPageStrutsFormName=EditSubSupplierForm
+EditActionName=EditSubSupplierAction
+total.fields=4
+field.1=subsupplier_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Long,mandatory:false
+field.2=subsupplier_name,varchar(250),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.3=supplier_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Long,mandatory:false
+field.4=supplier_name,varchar(250),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+

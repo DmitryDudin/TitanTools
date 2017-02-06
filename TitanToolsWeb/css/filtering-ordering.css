@@ -1,0 +1,202 @@
+div.filter {
+    width: 110px;
+    margin: 0 auto;
+    height: 50px;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+    position: relative;
+    top: -8px;
+}
+
+div.filter-large {
+    width: 120px;
+    margin: 0 auto;
+    height: 60px;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+    position: relative;
+    top: -8px;
+}
+
+div.filter-wide {
+    width: 205px;
+    margin: 0 auto;
+    height: 60px;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+    position: relative;
+    top: -8px;
+}
+
+div.filter-verywide {
+    width: 660px;
+    margin: 0 auto;
+    height: 200px;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+    position: relative;
+    top: 8px;
+}
+
+textarea.filter-verywide {
+    width: 660px;
+    margin: 0 auto;
+    height: 120px;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+    position: relative;
+    top: -8px;
+}
+
+div.filter-smaller {
+    width: 54px;
+    margin: 0 auto;
+    height: 44px;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+    position: relative;
+    top: -8px;
+}
+
+div.sort-only {
+    width: 54px;
+    margin: 0 auto;
+    height: 44px;
+    text-align: left;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+    position: relative;
+}
+
+input.filter {
+    font-size: 14px;
+    font-weight: 600;
+    width: 80px;
+    height: 20px;
+}
+
+input.filter-wide {
+    font-size: 14px;
+    font-weight: 600;
+    width: 200px;
+    height: 20px;
+}
+
+select.filter {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+table.filter-status {
+    border-collapse: collapse;
+    position: relative;
+    left: 10px;
+    top: 8px;
+}
+
+span.filter {
+    border-collapse: collapse;
+    position: relative;
+    left: 2px;
+    top: 10px;
+}
+
+table.filter {
+    border-collapse: collapse;
+}
+
+img.calendarFilter {
+    border-collapse: collapse;
+    width: 22px;
+    height: 10px;
+}
+
+div.ordering {
+    width: 240px;
+    margin: 0 auto;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    color: #000000;
+    background: #E6EAEF;
+
+}
+
+td.header {
+    text-align: center;
+    margin: 0 0 0 0;
+    height: 20px;
+}
+
+td.filter {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    height: 80px;
+}
+
+td.data {
+    text-align: left;
+    margin: 0 0 0 0;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+td.data-red {
+    text-align: left;
+    margin: 0 0 0 0;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: red;
+    background: yellow;
+
+}
+
+td.data-blue {
+    text-align: left;
+    margin: 0 0 0 0;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: blue;
+}
+
+#blanket {
+    background-color: #111;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    position: absolute;
+    z-index: 9001;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+

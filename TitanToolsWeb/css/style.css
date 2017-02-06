@@ -1,0 +1,617 @@
+html {
+    overflow-y: scroll;
+}
+
+#top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 34px;
+    background: #6495ED;
+}
+
+* html #top-bar {
+    position: absolute;
+}
+
+#topbar-inner {
+    height: 34px;
+    background: #6495ED;
+    position: relative;
+    width: 860px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+* html #topbar-inner {
+    margin-right: 17px;
+}
+
+body {
+    text-align: center; /*For IE6 Shenanigans*/
+}
+
+* html body {
+    padding-top: 34px;
+}
+
+* html, * html body {
+    overflow-y: hidden;
+    height: 100%;
+    margin-top: -34px;
+    background: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+#mainouter {
+    position: relative;
+    z-index: 2;
+    padding-top: 34px;
+/ / padding-bottom: 40 px;
+/ / margin-left: 150 px;
+/ / background: #ccc;
+    min-height: 100%;
+    width: 960px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+* html #mainouter {
+    height: 100%;
+    overflow: auto;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 2;
+    padding-top: 34px;
+/ / padding-bottom: 40 px;
+}
+
+#mainouter2 {
+/ / position: relative;
+    z-index: 2;
+    padding-top: 34px;
+    min-height: 100%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+* html #mainouter2 {
+    height: 100%;
+    overflow: auto;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 2;
+    padding-top: 34px;
+}
+
+body, th, td, input, textarea, select, option {
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+}
+
+h1, h2, h3 {
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-weight: normal;
+    color: #660066;
+}
+
+h1 {
+    letter-spacing: -2px;
+    font-size: 3em;
+}
+
+h2 {
+    letter-spacing: -1px;
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+p, ul, ol {
+    line-height: 200%;
+}
+
+blockquote {
+    margin: 15px 0px;
+    padding: 5px 7px 5px 40px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6em;
+    font-style: italic;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #B29269;
+    border: 1px solid #E3D1BA;
+    background: #F5EFE9;
+}
+
+blockquote p, blockquote ul, blockquote ol {
+    line-height: normal;
+    font-style: italic;
+}
+
+a {
+    color: #330066;
+}
+
+a:hover {
+    color: #FF0000;
+}
+
+hr {
+    display: none;
+}
+
+#wrapper {
+    width: 860px;
+    margin: 0 auto;
+    padding: 0;
+    /*	background: url(images/img03.jpg) repeat-y left top;*/
+}
+
+#wrapper-top {
+    padding-top: 30px;
+    /*	background: url(images/img02.jpg) no-repeat left top;*/
+}
+
+#wrapper-btm {
+    /*	background: url(images/img04.jpg) no-repeat left bottom;*/
+    padding-bottom: 30px;
+}
+
+/* Header */
+
+#header {
+    width: 780px;
+    height: 150px;
+    margin: 0 auto;
+    padding: 30px 0 0 0;
+    background: #5C3F1C;
+}
+
+#header h1, #header p {
+    margin: 0;
+}
+
+#header h1 {
+    float: left;
+    font-size: 52px;
+    padding: 57px 0 0 15px;
+    color: #F79F1A;
+}
+
+#header p {
+    float: left;
+    padding: 70px 0 0 10px;
+    font-size: 26px;
+    font-weight: normal;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #C4AC8D;
+    text-transform: lowercase;
+}
+
+#header a {
+    text-decoration: none;
+    color: #F79F1A;
+}
+
+/* Page */
+
+#page {
+    width: 760px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* Content */
+
+#content {
+    float: left;
+    width: 530px;
+    margin: 0;
+    color: #666666;
+}
+
+.post {
+    padding: 0px 0 0 0;
+}
+
+.title {
+    padding: 0 20px 5px 0px;
+    font-size: 26px;
+    border-bottom: 2px #CFBAA1 solid;
+    margin-right: 20px;
+}
+
+.title a {
+    text-decoration: none;
+    color: #B29269;
+}
+
+.pagetitle {
+}
+
+.byline {
+    margin: -25px 20px 0 0px;
+    color: #B29269;
+}
+
+.meta {
+    text-align: left;
+    color: #B29269;
+    padding: 5px 20px 5px 20px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    font-size: 13px;
+    margin-right: 20px;
+    border: 1px solid #E3D1BA;
+    background: #F5EFE9;
+}
+
+.meta .more {
+}
+
+.meta .comments {
+}
+
+.meta a {
+    color: #B29269;
+}
+
+.navigation {
+}
+
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}
+
+.posts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: normal;
+}
+
+.posts li {
+}
+
+.posts h3 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.posts p {
+    margin: 0;
+    line-height: normal;
+}
+
+.posts a {
+}
+
+.entry {
+    margin: 0;
+    padding: 17px 20px 5px 0px;
+}
+
+.last {
+    border: none;
+}
+
+/* Sidebar */
+
+#sidebar {
+    float: right;
+    width: 230px;
+    margin-bottom: 10px;
+    color: #B29269;
+}
+
+#sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#sidebar li {
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar li ul {
+    margin: 0 0 20px 30px;
+    padding: 0;
+}
+
+#sidebar li li {
+    margin: 0 0 0 0;
+    margin: 0 0 0 0;
+    /*	background: url(images/img08.gif) no-repeat left 50%;*/
+    line-height: 35px;
+    border-bottom: 1px #CFBAA1 solid;
+}
+
+#sidebar h2 {
+    margin: 0 0 0 20px;
+    height: 35px;
+    font-size: 18px;
+    color: #660066;
+    border-bottom: 2px #CFBAA1 solid;
+}
+
+#sidebar a {
+    text-decoration: none;
+}
+
+#sidebar a:hover {
+    text-decoration: none;
+}
+
+/* Search */
+
+#search input {
+    display: none;
+}
+
+#search input#s {
+    display: block;
+    width: 230px;
+    padding: 2px 5px;
+    border: 1px solid #3DD1FF;
+    background: #FFFFFF; /* url(images/img05.gif) repeat-x*/;
+}
+
+#search br {
+    display: none;
+}
+
+/* Calendar */
+
+#calendar {
+}
+
+#calendar h2 {
+    margin-bottom: 15px;
+}
+
+#calendar table {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#calendar caption {
+    width: 100%;
+    text-align: center;
+}
+
+#next {
+    text-align: right;
+}
+
+#prev {
+    text-align: left;
+}
+
+/* Footer */
+
+#footer {
+    width: 780px;
+    margin: 0 auto;
+    height: 50px;
+    text-align: center;
+    font-size: 10px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #FFFFFF;
+    background: #5C3F1C;
+    margin-bottom: 27px;
+}
+
+#footer p {
+    padding-top: 15px;
+}
+
+#footer p a {
+    color: #CFBAA1;
+}
+
+img {
+    border: none;
+}
+
+img.left {
+    float: left;
+    margin: 3px 20px 30px 0px;
+}
+
+img.right {
+    float: right;
+    margin: 3px 0px 10px 30px;
+}
+
+/* Rule to fix quirks-mode inheritance behavior */
+table, caption {
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    background: inherit;
+}
+
+div.user-name {
+    width: 140px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 10px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #FFFFFF;
+    background: #6495ED;
+    position: absolute;
+    top: 10px;
+    left: 820px;
+}
+
+div.patient-name {
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #0033FF;
+    background: #E6EAEF;
+    position: absolute;
+    top: 6px;
+    left: 500px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #9966ff;
+    border-width: 2px;
+}
+
+div.login-link {
+    width: 40px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 10px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #0000FF;
+    background: #6495ED;
+    position: absolute;
+    top: 10px;
+    left: 965px;
+}
+
+div.lock-current-user-name {
+    width: 280px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 10px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #151B8D;
+    background: #E6EAEF;
+    position: absolute;
+    top: 30px;
+    left: 720px;
+}
+
+div.lock-other-user-name {
+    width: 280px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 10px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #FF0000;
+    background: #E6EAEF;
+    position: absolute;
+    top: 30px;
+    left: 720px;
+}
+
+span.list-lock-by-other-user {
+    width: 50px;
+    font-size: 9px;
+    color: #FF0000;
+}
+
+span.list-lock-by-current-user {
+    width: 50px;
+    font-size: 9px;
+    color: #151B8D;
+}
+
+span.oem-case-header-label {
+    font-weight: 900;
+    font-size: 12px;
+}
+
+span.oem-case-header-value {
+
+}
+
+span.annotation-head {
+    font-size: 13px;
+    font-weight: 200;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #000000;
+}
+
+span.annotation-body {
+    font-size: 16px;
+    font-family: "Arial", "Helvetica", "Trebuchet MS", "Times New Roman", "Arial", "Times", "sans-serif";
+    color: #000066;
+    font-weight: 400;
+}
+
+select.text-field {
+    font-size: 13px;
+    width: 240px;
+    height: 30px;
+}
+
+input.long-text-field {
+    font-size: 13px;
+    width: 540px;
+    height: 30px;
+}
+
+select.long-text-field {
+    font-size: 13px;
+    width: 540px;
+    height: 30px;
+}
+
+td.input-data {
+    text-align: center;
+    margin: 0 0 0 0;
+    height: 20px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+td.input-header {
+    text-align: lef;
+    margin: 0 0 0 0;
+    height: 20px;
+}
+
+tr.odd {
+    background-color: #FFF;
+}
+
+tr.even {
+    background-color: #CCC;
+}
+
+tr.rowOldData {
+    background-color: #FFFF00;
+}
+
+tr.rowNewData {
+    background-color: #00FFFF;
+}
+
+tr.rowOldDataEven {
+    background-color: #FFFF00;
+}
+
+tr.rowOldDataOdd {
+    background-color: #FFEEAA;
+}
+
+tr.rowNewDataEven {
+    background-color: #00FFFF;
+}
+
+tr.rowNewDataOdd {
+    background-color: #AAEEFF;
+}

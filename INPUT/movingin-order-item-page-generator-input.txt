@@ -1,0 +1,37 @@
+SQL=select * from movingin_order_item WHERE 1=1 $WHERE$ $ORDER$
+DBTableName=movingin_order_item
+DAOInterfaceName=MovingInOrderItemDAO
+DAOImplementationName=PGMovingInOrderItemDAO
+DAOVOName=MovingInOrderItem
+DelegateName=MovingInOrderItemDelegate
+FilterVOName=MovingInOrderItemFilter
+StrutsActionName=ManageMovingInOrderItemAction
+SearchPageStrutsFormName=ManageMovingInOrderItemForm
+FormBeanVOName=MovingInOrderItemVO
+SearchTableCaption=MovingIn Order Item
+AddRecordButtonDisplayText=Add New MovingIn Order Item
+AddSingleRecordAction=editMovingInOrderItem
+JSPFileNameNoExtension=manageMovingInOrderItems
+EditJSPFileNameNoExtension=editMovingInOrderItem
+EditTableCaption=MovingIn Order Item
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditMovingInOrderItemForm
+EditActionName=EditMovingInOrderItemAction
+
+total.fields=15
+
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=item_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.3=order_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.4=master_product_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.5=movingin_order_item_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.6=product_barcode,varchar(40),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.7=amount,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:Integer,mandatory:false
+field.8=purchase_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.9=purchase_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.10=sale_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.11=sale_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.12=purchase_sum_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.13=sale_sum_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.14=GTD,varchar(50),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.15=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false

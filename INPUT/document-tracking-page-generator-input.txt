@@ -1,0 +1,37 @@
+SQL=select * from document_tracking... $WHERE$ $ORDER$
+DBTableName=document_tracking
+DAOInterfaceName=DocumentTrackingDAO
+DAOImplementationName=PGDocumentTrackingDAO
+DAOVOName=DocumentTracking
+DelegateName=DocumentTrackingDelegate
+FilterVOName=DocumentTrackingFilter
+StrutsActionName=ManageDocumentTrackingAction
+SearchPageStrutsFormName=ManageDocumentTrackingForm
+FormBeanVOName=DocumentTrackingVO
+SearchTableCaption=Document Tracking Search
+AddRecordButtonDisplayText=Add New Document Tracking
+AddSingleRecordAction=editDocumentTracking
+JSPFileNameNoExtension=manageDocumentTrackings
+EditJSPFileNameNoExtension=editDocumentTracking
+EditTableCaption=Document Tracking
+PermissionResourceConstantName=RESOURCE_VIEW_STORE_DOCUMENTS_PAGE
+EditPageStrutsFormName=EditDocumentTrackingForm
+EditActionName=EditDocumentTrackingAction
+total.fields=15
+
+field.1=store_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Integer,mandatory:false
+field.2=document_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.3=incoming_order_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.4=returning_order_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.5=product_repricing_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.6=document_number,varchar(30),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.7=document_name,varchar(200),filterable:true,sortable:true,wildcards:true,range:false,javatype:String,mandatory:false
+field.8=document_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+field.9=starting_amount,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.10=resulting_amount,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.11=type,char(1),filterable:true,sortable:true,wildcards:false,range:false,javatype:String,mandatory:false
+field.12=total_in_sale_prices,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.13=total_in_purchase_prices,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.14=update_date,timestamp,filterable:false,sortable:true,wildcards:false,range:false,javatype:Date,mandatory:false
+field.15=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:false,javatype:Date,mandatory:false
+

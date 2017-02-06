@@ -1,0 +1,34 @@
+SQL=select * from mp_price_change_history WHERE 1=1 $WHERE$ $ORDER$
+DBTableName=mp_price_change_history
+DAOInterfaceName=MPPriceChangeHistoryDAO
+DAOImplementationName=PGMPPriceChangeHistoryDAO
+DAOVOName=MPPriceChangeHistory
+DelegateName=MPPriceChangeHistoryDelegate
+FilterVOName=MPPriceChangeHistoryFilter
+StrutsActionName=MPPriceChangeHistoryAction
+SearchPageStrutsFormName=MPPriceChangeHistoryForm
+FormBeanVOName=MPPriceChangeHistoryVO
+SearchTableCaption=MP Price Change History
+AddRecordButtonDisplayText=Add MP Price Change History
+AddSingleRecordAction=editMPPriceChangeHistory
+JSPFileNameNoExtension=manageMPPriceChangeHistory
+EditJSPFileNameNoExtension=editMPPriceChangeHistory
+EditTableCaption=MP Price Change History
+PermissionResourceConstantName=RESOURCE_MANAGE_MASTER_PRODUCT_PAGE
+EditPageStrutsFormName=EditMPPriceChangeHistoryForm
+EditActionName=EditMPPriceChangeHistoryAction
+total.fields=13
+field.1=product_id,NUMERIC,filterable:false,sortable:false,wildcards:false,range:false,javatype:Long,mandatory:false
+field.2=schedule_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.3=list_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.4=user_id,NUMERIC,filterable:true,sortable:true,wildcards:true,range:false,javatype:Long,mandatory:false
+field.5=old_purchase_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.6=old_purchase_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.7=old_sale_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.8=old_sale_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.9=new_purchase_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.10=new_purchase_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.11=new_sale_price,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.12=new_sale_price_with_tax,NUMERIC,filterable:true,sortable:true,wildcards:false,range:true,javatype:BigDecimal,mandatory:false
+field.13=create_date,timestamp,filterable:false,sortable:true,wildcards:false,range:true,javatype:Date,mandatory:false
+
