@@ -1,5 +1,6 @@
 package org.titantech.titantools.generator;
 
+import java.math.BigDecimal;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
@@ -129,7 +130,7 @@ public class GeneratorBase {
     //public static String JAVA_SRC_DIR = "/home/ /dev/TitanTools/OUTPUT";
     public static String JAVA_SRC_DIR = "/home/kirill/dev/TitanTools/OUTPUT";
 
-    public static String VO_JAVA_PACKAGE_NAME = PACKAGE_NAME_PREFIX + ".integration.valueobject";
+    public static String VO_JAVA_PACKAGE_NAME = PACKAGE_NAME_PREFIX;
     public static String VO_JAVA_CLASS_NAME = "ACLMatrix";
     public static String DAO_JAVA_PACKAGE_NAME = PACKAGE_NAME_PREFIX + ".integration.dao";
     public static String DAO_JAVA_INTERFACE_NAME = "ACLMatrixDAO";
@@ -556,8 +557,8 @@ public class GeneratorBase {
             detail.javaFieldTypeName = "Date.class";
         } else if (detail.dbColumnType == Types.NUMERIC) {
             detail.dbColumnTypeName = "Types.NUMERIC";
-            detail.javaFieldTypeClass = Long.class;
-            detail.javaFieldTypeName = "Long.class";
+            detail.javaFieldTypeClass = BigDecimal.class;
+            detail.javaFieldTypeName = "BigDecimal.class";
         } else if (detail.dbColumnType == Types.BIGINT) {
             detail.dbColumnTypeName = "Types.BIGINT";
             detail.javaFieldTypeClass = Long.class;
