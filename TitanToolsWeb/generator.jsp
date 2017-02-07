@@ -300,8 +300,19 @@ function addField () {
             <a href="fs?fn=<bean:write name="generatorForm" property="downloadFileName" />"><bean:write
                     name="generatorForm" property="downloadFileName"/></a>
         </logic:notEmpty>
-        <BR>
+        <BR><BR>
 
+        <input type="button" onclick="doPageSubmit('preview')" name="previewButton" value="Preview"/>
+        <BR><BR>
+        <logic:notEmpty name="generatorForm" property="previewFiles">
+            <logic:notEmpty name="generatorForm" property="previewFilesRowCount">
+                <bean:define name="generatorForm" id="rowCount" property="previewFilesRowCount"
+                             type="java.lang.String"/>
+                <html:textarea styleId="previewFilesId" name="generatorForm" property="previewFiles"
+                               rows="<%= rowCount %>" cols="200" readonly="true"/><br/>
+            </logic:notEmpty>
+        </logic:notEmpty>
+        <BR>
     </html:form>
 </fieldset>
 </body>

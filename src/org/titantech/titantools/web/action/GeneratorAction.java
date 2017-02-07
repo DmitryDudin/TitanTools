@@ -130,6 +130,21 @@ public class GeneratorAction extends Action {
                     form.populateJavaFields();
 
                 }
+                if ("preview".equals(form.getActionName())) {
+
+                    if (form.getText() == null || form.getText().length() == 0) {
+                        return actionMapping.findForward("success");
+                    }
+
+                    GeneratorBase.PACKAGE_NAME_PREFIX = form.getBasePackageNamePrefix();
+                    GeneratorBase.reset();
+                    GeneratorBase.resetImports();
+
+                    String previewFiles = spg.generatePreview(form.getText());
+
+                    form.setPreviewFiles(previewFiles);
+                    form.setPreviewFilesRowCount(String.valueOf(previewFiles.split("\\n").length + 5));
+                }
 
             } catch (Exception e) {
                 logger.error("GeneratorAction.execute error: " + e.getMessage());

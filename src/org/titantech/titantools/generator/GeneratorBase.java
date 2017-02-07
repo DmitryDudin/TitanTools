@@ -14,6 +14,9 @@ import org.titantech.titantools.dao.bean.VOFieldToColumnMappingDetails;
 
 public class GeneratorBase {
 
+    protected static final String PREVIEW_FILE_DELIMITER =
+            "\n\n--------------------------------------------------------------------------------\n\n";
+
     protected static final String DB_SQL_SET = "SET";
     protected static final String DB_SQL_SELECT = "SELECT";
     protected static final String DB_SQL_INSERT = "INSERT";

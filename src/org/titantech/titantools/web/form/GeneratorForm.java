@@ -15,6 +15,9 @@ import org.titantech.titantools.dao.bean.SearchPageGeneratorInputBean;
 public class GeneratorForm extends ActionForm {
     private static final long serialVersionUID = 6556158254639716961L;
 
+    private String previewFiles = null;
+    private String previewFilesRowCount = null;
+
     private String actionName = null;
     private String downloadFileName = null;
 
@@ -199,6 +202,22 @@ public class GeneratorForm extends ActionForm {
 
     public void setJavaFieldTypes(List<LabelValueBean> javaFieldTypes) {
         this.javaFieldTypes = javaFieldTypes;
+    }
+
+    public String getPreviewFiles() {
+        return previewFiles;
+    }
+
+    public void setPreviewFiles(String previewFiles) {
+        this.previewFiles = previewFiles;
+    }
+
+    public String getPreviewFilesRowCount() {
+        return previewFilesRowCount;
+    }
+
+    public void setPreviewFilesRowCount(String previewFilesRowCount) {
+        this.previewFilesRowCount = previewFilesRowCount;
     }
 
 }

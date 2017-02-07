@@ -1,5 +1,11 @@
 package org.titantech.titantools.generator.frontend;
 
+import org.titantech.titantools.dao.bean.SearchPageGeneratorInputBean;
+import org.titantech.titantools.dao.bean.TableBean;
+import org.titantech.titantools.dao.bean.VOFieldToColumnMappingDetails;
+import org.titantech.titantools.delegate.DatabaseMetadataDelegate;
+import org.titantech.titantools.generator.*;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,16 +13,6 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import org.titantech.titantools.dao.bean.SearchPageGeneratorInputBean;
-import org.titantech.titantools.dao.bean.TableBean;
-import org.titantech.titantools.dao.bean.VOFieldToColumnMappingDetails;
-import org.titantech.titantools.delegate.DatabaseMetadataDelegate;
-import org.titantech.titantools.generator.DAOGenerator;
-import org.titantech.titantools.generator.DAOInterfaceGenerator;
-import org.titantech.titantools.generator.GeneratorBase;
-import org.titantech.titantools.generator.GeneratorUtilities;
-import org.titantech.titantools.generator.VOGenerator;
 
 //SQL=select type_name, description from label_type
 //total.fields=2
@@ -346,5 +342,228 @@ public class SearchAndEditPagesGenerator extends GeneratorBase {
             }
         }
         spgib.dbFieldType = getSQLType(typeStr);
+    }
+
+    public String generatePreview(String inputString) {
+        StringBuffer previewFiles = new StringBuffer();
+
+        inputBeans.clear();
+        String dbTableName = null;
+        String daoInterfaceName = null;
+        String daoImplementationName = null;
+        String daoVOName = null;
+        String delegateName = null;
+        String filterVOName = null;
+        String strutsActionName = null;
+        String searchPageStrutsFormName = null;
+        String formBeanVOName = null;
+        String jspName = null;
+        String searchTableCaption = null;
+        String addRecordButtonValue = null;
+        String addSingleRecordAction = null;
+        String jspFileNameNoExtension = null;
+        String editJspFileNameNoExtension = null;
+        String permissionResourceName = null;
+        String editPageStrutsFormName = null;
+        String editTableCaption = null;
+        String editActionName = null;
+
+        try {
+            BufferedReader br = null;
+            if (inputString != null) {
+                br = new BufferedReader(new StringReader(inputString));
+            }
+
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                int idx = line.indexOf("=");
+                if (idx == -1 || line.length() < idx + 2) continue;
+                String lineKey = line.substring(0, idx);
+                String lineValue = line.substring(idx + 1);
+                System.out.println(lineKey + " : " + lineValue);
+                if (lineKey.equals("DBTableName")) {
+                    dbTableName = lineValue;
+                } else if (lineKey.equals("DAOInterfaceName")) {
+                    daoInterfaceName = lineValue;
+                } else if (lineKey.equals("DAOImplementationName")) {
+                    daoImplementationName = lineValue;
+                } else if (lineKey.equals("DAOVOName")) {
+                    daoVOName = lineValue;
+                } else if (lineKey.equals("DelegateName")) {
+                    delegateName = lineValue;
+                } else if (lineKey.equals("FilterVOName")) {
+                    filterVOName = lineValue;
+                } else if (lineKey.equals("StrutsActionName")) {
+                    strutsActionName = lineValue;
+                } else if (lineKey.equals("SearchPageStrutsFormName")) {
+                    searchPageStrutsFormName = lineValue;
+                } else if (lineKey.equals("FormBeanVOName")) {
+                    formBeanVOName = lineValue;
+                } else if (lineKey.equals("SearchTableCaption")) {
+                    searchTableCaption = lineValue;
+                } else if (lineKey.equals("AddRecordButtonDisplayText")) {
+                    addRecordButtonValue = lineValue;
+                } else if (lineKey.equals("AddSingleRecordAction")) {
+                    addSingleRecordAction = lineValue;
+                } else if (lineKey.equals("JSPFileNameNoExtension")) {
+                    jspFileNameNoExtension = lineValue;
+                } else if (lineKey.equals("EditJSPFileNameNoExtension")) {
+                    editJspFileNameNoExtension = lineValue;
+                } else if (lineKey.equals("PermissionResourceConstantName")) {
+                    permissionResourceName = lineValue;
+                } else if (lineKey.equals("EditPageStrutsFormName")) {
+                    editPageStrutsFormName = lineValue;
+                } else if (lineKey.equals("EditTableCaption")) {
+                    editTableCaption = lineValue;
+                } else if (lineKey.equals("EditActionName")) {
+                    editActionName = lineValue;
+                } else if (lineKey.equals("total.fields")) {
+                    totalFields = (new Integer(lineValue)).intValue();
+                } else if (lineKey.startsWith("field.")) {
+                    SearchPageGeneratorInputBean spgib = new SearchPageGeneratorInputBean();
+                    String[] fields = line.split(",");
+                    spgib.fieldId = (new Integer(lineKey.substring(6))).intValue();
+                    spgib.dbFieldName = fields[0].substring(lineKey.length() + 1);
+                    setDbType(spgib, fields[1]);
+                    spgib.filterable = (new Boolean(fields[2].substring(11))).booleanValue();
+                    spgib.sortable = (new Boolean(fields[3].substring(9))).booleanValue();
+                    spgib.wildcards = (new Boolean(fields[4].substring(10))).booleanValue();
+                    spgib.range = (new Boolean(fields[5].substring(6))).booleanValue();
+                    spgib.javaTypeName = fields[6].substring(9).trim();
+                    spgib.mandatory = (new Boolean(fields[7].substring(10).trim())).booleanValue();
+                    spgib.primary = (new Boolean(fields[8].substring(8).trim())).booleanValue();
+                    spgib.serial = (new Boolean(fields[9].substring(7).trim())).booleanValue();
+                    inputBeans.add(spgib);
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
+        List<VOFieldToColumnMappingDetails> dbColumns = new ArrayList();
+        Iterator iter = inputBeans.iterator();
+        while (iter.hasNext()) {
+            SearchPageGeneratorInputBean in = (SearchPageGeneratorInputBean) iter.next();
+            VOFieldToColumnMappingDetails details = new VOFieldToColumnMappingDetails();
+            details.dbColumnName = in.dbFieldName;
+            details.dbColumnType = in.dbFieldType;
+            details.isPK = in.primary;
+            details.isSerial = in.serial;
+            dbColumns.add(details);
+        }
+        GeneratorBase.DATABASE_TABLE_NAME = dbTableName;
+        GeneratorBase.VO_JAVA_CLASS_NAME = daoVOName;
+        GeneratorBase.DAO_JAVA_INTERFACE_NAME = daoInterfaceName;
+        GeneratorBase.DAO_JAVA_CLASS_NAME = daoImplementationName;
+
+        VOGenerator voGenerator = new VOGenerator();
+        String voStr = voGenerator.generateVO4DAO(dbColumns);
+        String javaClassName = VO_JAVA_CLASS_NAME + GeneratorBase.PERIOD
+                + GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaClassName)
+                .append(voStr)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        DAOInterfaceGenerator daoInterfaceGenerator = new DAOInterfaceGenerator();
+        String daoInterfaceStr = daoInterfaceGenerator.generateDAOInterface(filterVOName, dbColumns);
+        String daoJavaInterfaceName = DAO_JAVA_INTERFACE_NAME + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(daoJavaInterfaceName)
+                .append(daoInterfaceStr)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        DAOGenerator daoGenerator = new DAOGenerator();
+        String daoClassStr = daoGenerator.generateDAOClass(dbColumns, inputBeans, filterVOName);
+        String daoJavaClassName = DAO_JAVA_CLASS_NAME + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(daoJavaClassName)
+                .append(daoClassStr)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+
+        FilterBeanGenerator fbGenerator = new FilterBeanGenerator();
+        String fbClassString = fbGenerator.generateFilterClass(filterVOName, inputBeans, dbColumns);
+        String javaFilterVOName = filterVOName + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaFilterVOName)
+                .append(fbClassString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        SearchPageFormBeanVOGenerator fbVOGenerator = new SearchPageFormBeanVOGenerator();
+        String fbVOString = fbVOGenerator.generateFormBeanVOClass(formBeanVOName, inputBeans, dbColumns);
+        String javaFormBeanVOName = formBeanVOName + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaFormBeanVOName)
+                .append(fbVOString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        SearchPageStrutsFormGenerator spsfGenerator = new SearchPageStrutsFormGenerator();
+        String spsfString = spsfGenerator.generateStrutsFormClass(searchPageStrutsFormName,
+                daoVOName, formBeanVOName, filterVOName, inputBeans);
+        String javaSearchPageStrutsFormName = searchPageStrutsFormName + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaSearchPageStrutsFormName)
+                .append(spsfString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        JSPGenerator jspGenerator = new JSPGenerator();
+        String jspString = jspGenerator.generateStrutsJSP(jspFileNameNoExtension,
+                searchPageStrutsFormName, daoVOName, formBeanVOName, filterVOName, inputBeans,
+                searchTableCaption, strutsActionName, addRecordButtonValue,
+                addSingleRecordAction, permissionResourceName);
+        String fullJspFileNameNoExtension = jspFileNameNoExtension + GeneratorBase.PERIOD +
+                GeneratorBase.JSP_FILE_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(fullJspFileNameNoExtension)
+                .append(jspString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        EditJSPGenerator ejspGenerator = new EditJSPGenerator();
+        String ejspString = ejspGenerator.generateStrutsJSP(editJspFileNameNoExtension,
+                editPageStrutsFormName, inputBeans, editTableCaption,
+                editActionName, permissionResourceName, jspFileNameNoExtension);
+        String fullEditJspFileNameNoExtension = editJspFileNameNoExtension + GeneratorBase.PERIOD +
+                GeneratorBase.JSP_FILE_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(fullEditJspFileNameNoExtension)
+                .append(ejspString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        EditPageStrutsFormGenerator epsfGenerator = new EditPageStrutsFormGenerator();
+        String epsfString = epsfGenerator.generateStrutsFormClass(editPageStrutsFormName, daoVOName, inputBeans);
+        String javaClassEditPageStrutsFormName = editPageStrutsFormName + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaClassEditPageStrutsFormName)
+                .append(epsfString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        EditPageStrutsActionGenerator epsaGenerator = new EditPageStrutsActionGenerator();
+        String epsaString = epsaGenerator.generateStrutsFormClass(editActionName, editPageStrutsFormName,
+                delegateName, daoVOName, jspFileNameNoExtension, permissionResourceName, dbColumns);
+        String javaClassEditActionName = editActionName + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaClassEditActionName)
+                .append(epsaString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        SearchPageStrutsActionGenerator spsaGenerator = new SearchPageStrutsActionGenerator();
+        String spsaString = spsaGenerator.generateStrutsFormClass(strutsActionName, searchPageStrutsFormName, delegateName,
+                daoVOName, jspFileNameNoExtension, addSingleRecordAction, permissionResourceName);
+        String javaClassStrutsActionName = strutsActionName + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaClassStrutsActionName)
+                .append(spsaString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        DelegateGenerator delegateGenerator = new DelegateGenerator();
+        String delegateString = delegateGenerator.generateDelegateClass(delegateName, daoVOName, daoInterfaceName,
+                filterVOName, dbColumns);
+        String javaClassDelegateName = delegateName + GeneratorBase.PERIOD +
+                GeneratorBase.JAVA_CLASS_EXTENSION + GeneratorBase.DBL_NEW_LINE;
+        previewFiles.append(javaClassDelegateName)
+                .append(delegateString)
+                .append(GeneratorBase.PREVIEW_FILE_DELIMITER);
+
+        return previewFiles.toString();
     }
 }
